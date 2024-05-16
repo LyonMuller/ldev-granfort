@@ -1,0 +1,31 @@
+.secao-descricao
+  padding-bottom: $spacer * 3
+  .imagens
+    order: -1
+    margin-bottom: $spacer * 6
+    --bottom: #{$spacer * 2.5}
+    img
+      position: relative
+      height: 30dvh
+      &:first-child
+        position: absolute
+        right: calc(var(--ld-gutter-x)*.5)
+
+    &:after
+      right: calc(var(--ld-gutter-x)*.5)
+      --size: #{$spacer * 4}
+
+  &__sobre
+    padding-top: 0
+    .imagens
+      img
+        &:first-child
+          width: calc(100% - var(--ld-gutter-x))
+          left: calc(var(--ld-gutter-x)*.5)
+
+        &:last-child
+          left: 15%
+
+      &::after
+        --size: #{$spacer * 2.5}
+        left: $spacer

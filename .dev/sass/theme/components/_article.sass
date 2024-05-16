@@ -1,0 +1,26 @@
+article
+  &:is(.post,.list)
+    a
+      &:hover
+        h3
+          color: var(--ld-secondary)
+        
+        .ver-mais
+          color: var(--ld-secondary)
+          text-decoration-color: var(--ld-secondary)
+    
+    h3
+      transition: color .3s
+
+  .desc-cont
+    margin: 0 $spacer * 2
+    transform: translate3d(0, $spacer * -4, 0)
+    margin-bottom: $spacer * -4
+
+    .ver-mais
+      transition: color .3s ease-in-out, text-decoration-color .3s ease-in-out
+      text-underline-offset: .5rem
+      text-decoration: underline .15rem transparent
+
+    img
+      max-height: 220px

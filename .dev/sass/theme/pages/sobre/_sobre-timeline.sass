@@ -1,0 +1,21 @@
+.sobre-timeline
+  .item:not(:last-child)
+    .ano-cont
+      &::after
+        content: ''
+        display: block
+        width: 3px
+        height: calc(100% + #{$spacer * 12})
+        background: var(--ld-light)
+        position: absolute
+        top: 0
+        left: 50%
+        transform: translateX(-50%)
+        
+    .ano
+      position: sticky
+      top: $spacer * 6
+      z-index: 1
+  
+  .ano
+    letter-spacing: .05rem

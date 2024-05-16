@@ -1,0 +1,57 @@
+.produto-descricao
+  .produto-img
+
+
+$altura-regua: 50px
+$tamanho-texto: 12px
+$sombra: $box-shadow
+
+.regua
+  width: calc(100% - $spacer * 3)
+  height: $spacer * 3.85
+  background-color: rgba($white, .5)
+  position: relative
+  box-shadow: $box-shadow
+  position: absolute
+  border-radius: var(--ld-border-radius)
+  bottom: 1rem
+  left: $spacer * 1.5
+  margin-block: auto
+  backdrop-filter: blur(4px)
+  font-weight: bold
+  overflow: hidden
+  
+  &:before,
+  &:after
+    position: absolute
+    font-size: $font-size-sm * .775
+    font-weight: $font-weight-bold
+    font-family: $font-family-semicondensed
+  
+  &::before
+    content: 'mm'
+    top: $spacer * .1
+    left: $spacer * .25
+
+  &:after
+    content: 'Atenção: ' attr(title)
+    text-align: center
+    bottom: 0
+    left: 0
+    right: 0
+
+  .marcacao
+    position: absolute
+    height: 45%
+    width: 1px
+    background-color: var(--ld-primary)
+    left: calc(var(--_left) * 10mm)
+
+    &:after
+      content: attr(data-number)
+      position: absolute
+      top: 100%
+      left: 50%
+      transform: translateX(-50%)
+      font-size: $font-size-sm * .75
+      color: var(--ld-primary)

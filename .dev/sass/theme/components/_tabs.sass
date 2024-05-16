@@ -1,0 +1,21 @@
+[data-click]
+  cursor: pointer
+  user-select: none
+
+[data-tg]
+  @include transition()
+  transform: translate3d(25px,0,0)
+  display: none
+  &.active
+    transform: translate3d(0,0,0)
+    animation: show 0.5s forwards
+    opacity: 1
+    display: flex   
+
+
+@keyframes show
+  0%
+    transform: translate3d(0,25px,0)
+
+  100%
+    transform: translate3d(0,0,0)

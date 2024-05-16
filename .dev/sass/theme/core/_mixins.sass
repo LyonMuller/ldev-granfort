@@ -1,0 +1,19 @@
+/**
+ * Placeholders
+ **/
+
+@mixin placeholder($color : $dark)
+  &::-webkit-input-placeholder
+    color: $color
+    @include transition()
+  &::-moz-placeholder
+    color: $color
+    @include transition()
+  &:-ms-input-placeholder
+    color: $color
+    @include transition()
+  &:-moz-placeholder
+    color: $color
+    @include transition()
+
+@import "mixins-scss"

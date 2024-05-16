@@ -1,0 +1,19 @@
+.case
+  &:hover
+    .tit-cont
+      opacity: 1
+
+  .tit-cont
+    left: 0
+    right: 0
+    opacity: 0
+    top: 0
+    bottom: 0
+    padding: $spacer
+    background: rgba(255,255,255, .85)
+    flex-flow: column
+    justify-content: flex-end
+    @include transition()
+
+    span.link:hover
+      color: var(--ld-primary)

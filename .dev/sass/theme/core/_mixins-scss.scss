@@ -1,0 +1,11 @@
+@mixin import-local-font($font-name, $font-path, $font-weight: normal, $font-style: normal) {
+  @font-face {
+    font-family: '#{$font-name}';
+    src: local('#{$font-name}'), 
+         url('#{$font-path}.woff2') format('woff2'),
+         url('#{$font-path}.woff') format('woff');
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-display: swap;
+  }
+}

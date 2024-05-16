@@ -1,0 +1,29 @@
+header
+  h1
+    font-size: $h2-font-size
+    br
+      display: none
+  
+
+.secao-banner
+  
+  &__home
+    .splide__slide
+      width: 100dvw
+    
+    .splide__pagination
+      scale: .5
+
+  &__produtos
+    background: linear-gradient(to right, var(--ld-light-100) 30%, rgba($light, .4) 70%),var(--ld-primary) var(--bg) no-repeat center/cover
+
+  &__blog
+    img
+      border-radius: var(--ld-border-radius) var(--ld-border-radius) 0 0
+
+    .desc-cont
+      border-radius: 0 0 var(--ld-border-radius) var(--ld-border-radius)
+
+  &__post
+    .row
+      padding-inline: calc(var(--ld-gutter-x)*.5)

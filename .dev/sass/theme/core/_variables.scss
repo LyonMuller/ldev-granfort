@@ -1,0 +1,122 @@
+$enable-caret:                false;
+$enable-rounded:              true;
+$enable-shadows:              false;
+$enable-gradients:            false;
+$enable-transitions:          true;
+$enable-reduced-motion:       true;
+$enable-smooth-scroll:        true;
+$enable-grid-classes:         true;
+$enable-container-classes:    true;
+$enable-cssgrid:              false;
+$enable-button-pointers:      true;
+$enable-rfs:                  false;
+$enable-negative-margins:     false;
+$enable-validation-icons:     false;
+$enable-deprecation-messages: false;
+$enable-important-utilities:  false;
+
+$variable-prefix: ld-;
+$link-decoration: none;
+
+$primary:         #163963;
+$secondary:       #006AA8;
+$secondary-light: lighten($secondary, 10%);
+$logo-color:      #01495C;
+$light:           #F6F6F6;
+$light-100:       #E5E5E5;
+$light-color:     #f1f1ff;
+$success:         #2DB071;
+$nav-link-color:  #2C2C2C;
+$body-color:      #4C4C4C;
+$body-color-dark: #F5F5F5;
+$gray-600:        #888888; 
+$dark:            $secondary;
+
+$gradient: linear-gradient(315deg, var(--ld-primary) 0%, var(--ld-secondary) 100%);
+
+$theme-colors: (
+  'primary':      $primary,
+  'secondary':    $secondary,
+  'light':        $light,
+  'light-100':    $light-100,
+  'dark':         $dark,
+  'white':      #fff,
+);
+
+$headings-color: var(--ld-primary);
+$headings-color-dark: $primary;
+
+$text-shadow-black: 1px 2px 2px rgba(#000, .2);
+$text-shadow-white: 1px 2px 2px rgba(#fff, .2);
+
+$nav-link-color:       $nav-link-color;
+$nav-link-hover-color: var(--ld-secondary);
+$btn-font-weight:      600;
+$headings-font-weight: 700;
+$nav-link-font-weight: 400;
+
+$navbar-padding-x: 0;
+$navbar-padding-y: 0;
+$dropdown-border-radius: 0;
+
+$spacer: 1rem;
+$border-radius-lg: $spacer * .65;
+
+$btn-padding-y: calc($spacer / 1.5);
+$btn-padding-x: $spacer * 1.75;
+
+$font-family-sans-serif: 'Barlow', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-condensed: 'Barlow Condensed', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-semicondensed: 'Barlow Semi Condensed', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+$headings-font-family: $font-family-sans-serif;
+$btn-font-family: $font-family-condensed;
+
+$font-size-base:     1.125rem;
+$font-weight-normal: 300;
+$font-weight-base:   $font-weight-normal;
+$headings-line-height: 1.25;
+
+$h1-font-size: $font-size-base * 2.8125;
+$h2-font-size: $font-size-base * 2.5;
+$h3-font-size: $font-size-base * 2;
+$h4-font-size: $font-size-base * 1.75;
+$h5-font-size: $font-size-base * 1.25;
+$h6-font-size: $font-size-base * 1.125;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1300px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1240px
+);
+
+$grays: ();
+$colors: ();
+$theme-colors-text: ();
+$theme-colors-bg-subtle: ();
+$theme-colors-rgb: ();
+$theme-colors-border-subtle: ();
+
+$grays-dark: ();
+$colors-dark: ();
+$theme-colors-text-dark: ();
+$theme-colors-bg-subtle-dark: ();
+$theme-colors-rgb-dark: ();
+$theme-colors-border-subtle-dark: ();
+
+// Navbar
+$navbar-brand-height: auto;
+$navbar-brand-padding-y: 0;
+$navbar-brand-margin-end: 0;
+
+$nav-link-padding-x: calc($spacer / 1.25);
+$nav-link-padding-y: calc($spacer / 2);

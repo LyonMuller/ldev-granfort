@@ -1,0 +1,25 @@
+.produto-listagem
+  &__imagem img
+    height: 215px
+    object-fit: cover
+    transition: scale .3s ease-in-out, rotate .3s ease-in-out
+
+  .categoria
+    left: $spacer
+    top: $spacer
+    padding: $spacer * .35
+    line-height: 1
+    z-index: 2
+
+  &:hover
+    &:nth-child(2n + 1)
+      img
+        rotate: -5deg
+
+    img
+      scale: 1.2
+      rotate: 5deg
+
+    span
+      background-color: var(--ld-primary)
+      color: var(--ld-body-bg)

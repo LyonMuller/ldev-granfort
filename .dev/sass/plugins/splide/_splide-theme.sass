@@ -1,0 +1,30 @@
+.splide__pagination
+  --color: var(--ld-primary)
+  --size: #{$spacer}
+  margin-top: $spacer * 2
+  padding: 0
+  display: flex
+  gap: calc($spacer / 2)
+  
+  @media (width <= 991px)
+    --size: #{$spacer * 3}
+    scale: .35
+
+.splide__pagination__page
+  background-color: transparent
+  backdrop-filter: blur(3px)
+  appearance: none
+  border: 1px solid var(--color)
+  border-radius: $spacer * 999
+  width: var(--size)
+  height: var(--size)
+  cursor: pointer
+  aspect-ratio: 1/1
+  @include transition()
+
+  &:hover
+    background-color: var(--color)
+
+  &.is-active
+    background-color: var(--color)
+

@@ -1,0 +1,152 @@
+form
+  .wpforms-field-container
+    display: flex
+    flex-wrap: wrap
+    gap: $spacer      
+    &>*
+      flex: 0 0 100%
+    
+    .column
+      flex: 0 0 calc(50% - .5rem)
+
+    &>div
+      position: relative
+
+  ul
+    list-style: none
+    padding: 0
+    margin-bottom: 0
+    
+    li
+      display: flex
+      gap: $spacer * .5
+  
+  .wpforms-recaptcha-container
+    margin-block: $spacer
+
+  label
+    font-weight: 400
+    position: relative
+  
+
+  .wpforms-field-description
+    font-size: $font-size-sm * .8
+    font-weight: bold
+    color: $gray-600
+
+  label,
+  input:is([type="text"], [type="tel"], [type="email"], [type="url"], [type="date"], [type="number"]),
+  select,
+  textarea
+    font-size: $spacer
+    display: block
+    font-family: $font-family-semicondensed
+
+  input:is([type="text"], [type="tel"], [type="email"], [type="url"], [type="date"], [type="number"]),
+  select,
+  textarea
+    border: 0
+    outline: 1px solid var(--ld-light-100)
+    background-color: var(--ld-body-bg)
+    padding: calc($spacer / 2) $spacer
+    border-radius: var(--ld-border-radius-sm)
+    width: 100%
+    color: var(--ld-body-color)
+    @include placeholder($gray-600)
+    @include transition()
+
+
+    &:is(focus, :active, :focus-within, :focus-visible)
+      outline: 2px solid var(--ld-secondary)
+      color: var(--ld-secondary)
+      font-weight: 500
+    
+    & + .wpforms-has-error em
+      display: none
+
+  select
+    padding: $spacer * .5945 $spacer
+
+  .choices__inner
+    border-color: var(--ld-light-100) !important
+
+  .wpforms-has-error
+    color: $danger
+    margin-bottom: calc($spacer / 2)
+    @include placeholder($danger)
+    & + label
+      color: $danger
+
+    input,
+    select,
+    textarea
+      color: $danger
+      outline-color: $danger
+  
+  .wpforms-required-label,
+  .wpforms-has-error em
+    color: $danger
+    font-size: $spacer
+    font-style: normal
+  
+  .wpforms-error-container p
+    margin-block: $spacer
+    background: $danger
+    color: $white
+    padding: $spacer * .5
+    border-radius: var(--ld-border-radius)
+    font-size: $font-size-sm
+    font-weight: bold
+    text-align: center
+
+
+  .wpforms-submit
+    display: block
+    border: 0
+    background: var(--ld-primary)
+    border-color: var(--ld-primary)
+    color: var(--ld-white)
+    padding: $spacer * 0.625 $spacer * 0.938
+    border-radius: var(--ld-border-radius-sm)
+    border: 1px solid transparent
+    font-weight: $btn-font-weight
+    font-size: $btn-font-size
+    font-family: $btn-font-family
+    transition: border-color .2s, background .2s, color .2s
+    transition: border-color .2s, background .2s
+    
+    &:disabled
+      background: $gray-400
+      border-color: $gray-400
+      color: $gray-600
+
+    &:not(:disabled):hover
+      color: var(--ld-white)
+      background: darken($primary, 6%)
+      border-color: darken($primary, 6%)
+
+  em.wpforms-error
+    color: $white
+    background: $danger
+    padding: calc($spacer / 5) $spacer * .35
+    font-size: $font-size-sm * .55
+    border-radius: var(--ld-border-radius-sm)
+    font-weight: bold
+    text-transform: uppercase
+    right: $spacer * .35
+    top: calc(50% + #{$spacer} / 1.25)
+    transform: translateY(-50%)
+    position: absolute
+
+  fieldset + em.wpforms-error
+    position: relative
+    inset: 0
+
+.wpforms-confirmation-container
+  background: $gradient
+  color: $white
+  padding: $spacer * 2
+  text-align: left
+  position: relative
+  border: 0
+  border-radius: var(--ld-border-radius)

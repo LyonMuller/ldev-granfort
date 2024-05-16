@@ -1,0 +1,37 @@
+.sobre-timeline
+  .item
+    padding-block: $spacer * 3
+    .ano-cont
+      &::after
+        content: ''
+        display: block
+        width: 3px
+        height: calc(100% + #{$spacer * 12})
+        background: var(--ld-light)
+        position: absolute
+        top: 0
+        left: 50%
+        transform: translateX(-50%)
+        
+    .ano
+      position: sticky
+      top: $spacer * 6
+      z-index: 1
+    
+    &:last-child
+      .ano-cont
+        &::after
+          height: 100%
+
+
+  .pr-4
+    padding-right: calc(var(--ld-gutter-x)*.5)
+
+  .descricao
+    gap: $spacer
+
+  .imagem
+    order: -1
+
+  .my-4
+    margin-top: $spacer

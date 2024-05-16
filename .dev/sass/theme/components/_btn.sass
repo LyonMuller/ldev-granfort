@@ -1,0 +1,111 @@
+.btn-primary,
+.btn-secondary,
+.btn-white,
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-white
+  padding: $spacer * 0.625 $spacer * 0.938
+  display: inline-block
+  border-radius: var(--ld-border-radius-sm)
+  border: 1px solid transparent
+  font-weight: $btn-font-weight
+  font-size: $btn-font-size
+  font-family: $btn-font-family
+  transition: border-color .2s, background .2s, color .2s
+  &.btn-sm
+    padding: calc($spacer / 3) $spacer
+
+.btn-primary
+  background: var(--ld-primary)
+  border-color: var(--ld-primary)
+  color: var(--ld-white)
+  transition: border-color .2s, background .2s
+  &:hover
+    color: var(--ld-white)
+    background: darken($primary, 6%)
+    border-color: darken($primary, 6%)
+
+.btn-outline-primary
+  color: var(--ld-primary)
+  border-color: var(--ld-primary)
+  background: transparent
+  transition: border-color .2s, background .2s
+  &.dark
+    color: var(--ld-white)
+    &:hover
+      color: var(--ld-secondary)
+
+  &.white
+    color: var(--ld-white)
+    &:hover
+      color: var(--ld-white)
+
+  &:hover
+    color: var(--ld-white)
+    background: var(--ld-primary)
+
+.btn-outline-white
+  color: var(--ld-white)
+  border-color: var(--ld-white)
+  background: transparent
+  transition: border-color .2s, background .2s
+  &:hover
+    background: var(--ld-white)
+    color: var(--ld-primary)
+
+
+.btn-md
+  padding: $spacer * .95 
+  font-size: $font-size-sm
+  
+.btn-sm
+  padding: calc($spacer / 3) $spacer
+  line-height: 1
+  font-size: $font-size-sm
+  
+.btn-secondary
+  background: var(--ld-secondary)
+  border-color: var(--ld-secondary)
+  color: var(--ld-white)
+  &:hover
+    background: lighten($secondary, 6%)
+    color: var(--ld-white)
+
+.btn-white
+  background: var(--ld-white)
+  border-color: var(--ld-white)
+  color: var(--ld-dark)
+  &:hover
+    background: darken($white, 4%)
+    border-color: darken($white, 4%)
+
+.btn-whatsapp
+  background-color: #1cb554
+  position: fixed
+  right: $spacer * 2
+  bottom: $spacer * 3
+  min-width: $spacer * 3
+  max-width: $spacer * 3
+  height: $spacer * 3
+  aspect-ratio: 1/1
+  z-index: $zindex-fixed
+  padding: calc($spacer / 2)
+  border-radius: var(--ld-border-radius-pill)
+  transition: background-color .2s
+  animation: glow-whatsapp infinite 1s
+  animation-direction: alternate
+
+  svg
+    width: 80%
+    margin-inline: auto
+
+  &:hover
+    background-color: #15893f
+
+@keyframes glow-whatsapp
+  0%
+    box-shadow: 0 0 .5rem .15rem rgba(28, 181, 84, 0.4)
+
+  100%
+    box-shadow: 0 0 2rem 0.35rem rgba(28, 181, 84, .5)
+  

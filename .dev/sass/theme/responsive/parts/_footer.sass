@@ -1,0 +1,30 @@
+.footer-body
+  overflow: hidden
+  position: relative
+  z-index: $zindex-fixed + 1
+
+  .logo-footer
+    max-width: 100%
+    margin-bottom: $spacer * 3
+
+  .info-button
+    text-align: left
+
+  .sm-icons
+    --size: #{$spacer * 2}
+
+  .mt-5
+    margin-top: $spacer * 2
+
+  .info-cta
+    .grid
+      &:not(:hover)
+        &:after
+          translate: calc(var(--ld-gutter-x)*.5) $spacer * 2 
+  
+  .copyright
+    display: grid
+    gap: $spacer
+    text-align: center
+    .txt-rg
+      text-align: center

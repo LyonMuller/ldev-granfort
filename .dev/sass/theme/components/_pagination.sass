@@ -1,0 +1,36 @@
+.blog-pagination
+  width: 100%
+  margin-top: $spacer * 4
+  display: flex
+  justify-content: center
+
+  .nav-links
+    display: flex
+    justify-items: center
+    gap: $spacer * .5
+    margin: 0 auto
+
+    .page-numbers
+      color: var(--ld-body-color)
+      font-size: $h5-font-size
+      font-weight: 500
+      display: inline-flex
+      align-items: center
+      padding: $spacer * .5
+      width: $spacer * 2
+      height: $spacer * 2
+      justify-content: center
+      border-radius: var(--ld-border-radius)
+      font-family: $font-family-semicondensed
+      line-height: 1
+      &.next,
+      &.prev
+        font-size: 0
+        display: none
+          
+      &.prev
+        transform: rotate(180deg)
+
+      &:is(.current, :hover)
+        background: $gray-300
+        color: var(--ld-primary)

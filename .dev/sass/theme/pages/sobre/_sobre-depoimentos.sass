@@ -1,0 +1,25 @@
+.sobre-depoimentos
+  .splide__arrows
+    justify-content: space-between
+    position: absolute
+    left: 0
+    right: 0
+
+    button
+      border: 0
+      background: transparent
+      font-size: $font-size-sm
+      font-weight: 500
+      display: flex
+      font-family: $font-family-semicondensed
+      transition: color .2s ease-in-out
+      svg path
+        transition: stroke .2s ease-in-out
+      &:hover
+        color: var(--ld-secondary)
+        svg path
+          stroke: var(--ld-secondary)
+          
+  .splide__pagination
+    margin-top: $spacer * 5.25
+    --color: var(--ld-secondary)

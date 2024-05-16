@@ -1,0 +1,84 @@
+.navbar-brand
+  svg, img
+    width: 160px
+    height: auto
+
+.menu-topo
+  padding-block: $spacer
+  padding-inline: $spacer $spacer * 2
+  font-family: $font-family-semicondensed
+  background: var(--ld-body-bg)
+  .info-cta
+    margin-top: $spacer
+
+    &:before
+      display: none
+    
+    h2
+      font-size: $h6-font-size
+
+  .nav-item
+    .dropdown-toggle
+      &:after
+        content: ''
+        background: url('data:image/svg+xml,<svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.9851 1.97063L6.01463 5.99995L1.98532 2.02948" stroke="%23000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center / contain
+        width: $spacer * .8
+        height: $spacer * .6
+        margin-left: calc($spacer / 2)
+        display: inline-block
+        transition: transform .2s
+        position: absolute
+        right: calc($spacer * -.25)
+        top: 50%
+        transform: translateY(-50%)
+
+      &:hover
+        &::after
+          transform: translateY(-50%) rotate(-180deg)
+
+    &.btn
+      margin-left: $spacer
+      .nav-link
+        --ld-nav-link-color: var(--ld-white)
+        --ld-nav-link-color-hover: var(--ld-white)
+        background-color: var(--ld-primary)
+        border-radius: var(--ld-border-radius-sm)
+        transition: background-color .3s ease-in-out
+        text-decoration: none
+      
+      &:is(.active, :hover, :active, :focus)
+        .nav-link
+          background-color: var(--ld-secondary)
+  
+  .nav-link
+    --ld-nav-link-color-hover: var(--ld-secondary)
+    position: relative
+    margin: 0 calc($spacer / 5)
+    transition: color .3s ease-in-out, text-decoration-color .3s ease-in-out
+    text-underline-offset: .5rem
+    text-decoration: underline .15rem transparent
+
+    &:is(:focus, :hover, .active, [aria-current="page"])
+      color: var(--ld-nav-link-color-hover)
+      text-decoration-color: var(--ld-nav-link-color-hover)
+    
+    &:is(.active, [aria-current="page"])
+      font-weight: $font-weight-bold
+
+// Quando o menu scrollar
+.navbar-fixed-top
+  position: fixed
+  z-index: $zindex-sticky
+  top: 0
+  left: 0
+  right: 0
+  width: 100vw
+  transition: background-color .15s, box-shadow .15s
+  transform: translate3d(0,0,0)
+  transition: transform .3s
+  &.transform-nav
+    transform: translate3d(0,-100%,0)
+  &.bg-white,
+  &.border-bg
+    background: $white
+    box-shadow: var(--ld-box-shadow-sm)

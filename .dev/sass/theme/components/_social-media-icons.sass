@@ -1,0 +1,36 @@
+.sm-icons
+  list-style: none
+  padding: 0
+  a
+    @include transition()
+    filter: var(--filter)
+
+    &:hover
+      opacity: .75
+      
+    &[href*="facebook"],
+    &[href*="fb.me"]
+      background-image: url('../img/svg/sm/facebook.svg')
+
+    &[href*="behance"]
+      background-image: url('../img/svg/sm/behance.svg')
+
+    &[href*="instagr.am"],
+    &[href*="instagr.com"],
+    &[href*="instagram"]
+      background-image: url('../img/svg/sm/instagram.svg')
+
+    &[href*="linkedin"]
+      background-image: url('../img/svg/sm/linkedin.svg')
+
+    &[href*="twitter"],
+    &[href*="x.com"]
+      background-image: url('../img/svg/sm/twitter.svg')
+
+    &[href*="whatsapp"]
+      background-image: url('../img/svg/sm/whatsapp.svg')
+
+    &[href*="youtube"]
+      background-image: url('../img/svg/sm/youtube.svg')
+
+    
