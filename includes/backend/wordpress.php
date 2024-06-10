@@ -51,16 +51,19 @@ function ldev_custom_login_logo() {
   // URL da imagem da nova logo
   $logo_url = ldev_logo_url();
 
-  echo '<style type="text/css">';
-  echo '    .login h1 a {';
-  echo '      background-image: url(' . $logo_url . ') !important;';
-  echo '      width: auto !important;';
-  echo '      background-size: contain !important;';
-  echo '    }';
-  echo '    .login h1 a:hover {';
-  echo '      background-color: transparent !important;';
-  echo '    }';
-  echo '</style>';
+  echo 
+  '<style type="text/css">
+    .login h1 a {
+      background-image: url(' . $logo_url . ') !important;
+      width: auto !important;
+      background-size: contain !important;
+      margin-bottom: .5rem;
+      height: auto;
+    }
+    .login h1 a:hover {
+      background-color: transparent !important;
+    }
+  </style>';
 }
 add_action('login_head', 'ldev_custom_login_logo');
 

@@ -1,19 +1,13 @@
 .btn-primary,
-.btn-secondary,
 .btn-white,
-.btn-outline-primary,
-.btn-outline-secondary,
 .btn-outline-white
-  padding: $spacer * 0.625 $spacer * 0.938
+  padding: $spacer * 0.525 $spacer * 0.938
   display: inline-block
-  border-radius: var(--ld-border-radius-sm)
   border: 1px solid transparent
   font-weight: $btn-font-weight
   font-size: $btn-font-size
   font-family: $btn-font-family
   transition: border-color .2s, background .2s, color .2s
-  &.btn-sm
-    padding: calc($spacer / 3) $spacer
 
 .btn-primary
   background: var(--ld-primary)
@@ -25,25 +19,6 @@
     background: darken($primary, 6%)
     border-color: darken($primary, 6%)
 
-.btn-outline-primary
-  color: var(--ld-primary)
-  border-color: var(--ld-primary)
-  background: transparent
-  transition: border-color .2s, background .2s
-  &.dark
-    color: var(--ld-white)
-    &:hover
-      color: var(--ld-secondary)
-
-  &.white
-    color: var(--ld-white)
-    &:hover
-      color: var(--ld-white)
-
-  &:hover
-    color: var(--ld-white)
-    background: var(--ld-primary)
-
 .btn-outline-white
   color: var(--ld-white)
   border-color: var(--ld-white)
@@ -53,31 +28,19 @@
     background: var(--ld-white)
     color: var(--ld-primary)
 
-
-.btn-md
-  padding: $spacer * .95 
-  font-size: $font-size-sm
-  
-.btn-sm
-  padding: calc($spacer / 3) $spacer
-  line-height: 1
-  font-size: $font-size-sm
-  
-.btn-secondary
-  background: var(--ld-secondary)
-  border-color: var(--ld-secondary)
-  color: var(--ld-white)
-  &:hover
-    background: lighten($secondary, 6%)
-    color: var(--ld-white)
-
 .btn-white
   background: var(--ld-white)
   border-color: var(--ld-white)
-  color: var(--ld-dark)
+  color: var(--ld-primary)
+
   &:hover
     background: darken($white, 4%)
     border-color: darken($white, 4%)
+
+    &.hover-secondary
+      background: var(--ld-secondary)
+      border-color: var(--ld-secondary)
+      color: var(--ld-white)
 
 .btn-whatsapp
   background-color: #1cb554
@@ -108,4 +71,29 @@
 
   100%
     box-shadow: 0 0 2rem 0.35rem rgba(28, 181, 84, .5)
+
+.btn-video
+  --size: #{$spacer * 3}
+  display: flex
+  background: none
+  width: var(--size)
+  height: var(--size)
+  border-radius: 50%
+  border: 2px solid currentColor
+  place-content: center
+  place-items: center
+  left: $spacer
+  bottom: $spacer
+  position: absolute
+  color: var(--ld-white)
+  padding: 0
+  @include transition()
+  backdrop-filter: blur(4px)
+  z-index: 2
   
+  svg
+    block-size: #{calc(var(--size) * .5)}
+  
+  &:hover
+    color: var(--ld-secondary)
+    background: rgba($white, .1)

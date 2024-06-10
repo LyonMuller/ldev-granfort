@@ -1,619 +1,138 @@
 <?php
 if (is_customize_preview()) {
+  class Ldev_Customize {
+    private $wp_customize;
+  
+    public function __construct($wp_customize) {
+      $this->wp_customize = $wp_customize;
+    }
+  
+    public function add_section($id, $title, $priority, $panel = null) {
+      $args = [
+        'title'    => $title,
+        'priority' => $priority,
+      ];
 
-  /**
-   * Adiciona campos personalizados na aba de personalização (Customizer).
-   * Autor: Lyon.dev_
-   */
-  function ldev_customize_register($wp_customize)
-  {
+      if ($panel) $args['panel'] = $panel;
+  
+      $this->wp_customize->add_section($id, $args);
+    }
+  
+    public function add_setting_control($id, $section, $label, $type = 'text', $description = '', $choices = []) {
+      $this->wp_customize->add_setting($id, [
+        'default'   => '',
+        'transport' => 'refresh',
+        'type'      => 'theme_mod',
+      ]);
 
+      $control_args = [
+        'label'       => $label,
+        'section'     => $section,
+        'settings'    => $id,
+        'description' => $description,
+        'type'        => $type,
+      ];
 
-    // Seção - Informações da Empresa
-    $wp_customize->add_section('ldev_section_company_info', [
-      'title'    => 'Informações da Empresa',
-      'priority' => 30,
-    ]);
+      if ($choices) $control_args['choices'] = $choices;
 
-    // Seção - Produtos
-    $wp_customize->add_section('ldev_section_products', [
-      'title'    => 'Produtos',
-      'priority' => 40,
-    ]);
+      $this->wp_customize->add_control(new WP_Customize_Control($this->wp_customize, $id, $control_args));
+    }
+  
+    public function add_image_control($id, $section, $label) {
+      $this->wp_customize->add_setting($id, [
+        'default'   => '',
+        'transport' => 'refresh',
+      ]);
 
-    // Seção - Blog
-    $wp_customize->add_section('ldev_section_outros', [
-      'title'    => 'Outros',
-      'priority' => 40,
-    ]);
+      $this->wp_customize->add_control(new WP_Customize_Image_Control($this->wp_customize, $id, [
+        'label'    => $label,
+        'section'  => $section,
+        'settings' => $id,
+      ]));
+    }
+  }
 
-    // Seção - Popup
-    $wp_customize->add_section('ldev_section_popup', [
-      'title'    => 'Popup',
-      'priority' => 30,
-    ]);
-
-    // Seção - Popup de Orçamento
-    $wp_customize->add_section('ldev_section_popup_orcamento', [
-      'title'    => 'Popup de Orçamento',
-      'priority' => 30,
-    ]);
-
+  function ldev_customize_register($wp_customize) {
+    $customizer = new Ldev_Customize($wp_customize);
+  
+    // Adding sections
+    $customizer->add_section('ldev_section_company_info', 'Company Info', 30);
+    $customizer->add_section('ldev_section_boats', 'Boats', 40);
+    $customizer->add_section('ldev_section_header', 'Header', 30);
     $wp_customize->add_panel('ldev_section_footer', [
-      'title'       => 'Footer',
-      'description' => 'Configurações do Rodapé',
-      'priority'    => 40,
-    ]);
-
-    $wp_customize->add_section('ldev_footer_general', [
-      'title'    => 'Configurações Gerais',
-      'panel'    => 'ldev_section_footer',
-      'priority' => 10, 
-    ]);
+      'title'    => 'Footer',
+      'priority' => 31,
+      ]);
+    $customizer->add_section('ldev_footer_general', 'Copyright', 10, 'ldev_section_footer');
+    $customizer->add_section('ldev_section_others', 'Others', 30);
     
-    // Campo - Placeholder
-    $wp_customize->add_setting('ldev_404_background', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
 
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'ldev_404_background', [
-      'label'    => 'Background 404',
-      'section'  => 'ldev_section_outros',
-      'settings' => 'ldev_404_background',
-    ]));
+    $section = 'ldev_section_header';
+    $customizer->add_setting_control('ldev_header_left_menu', $section, 'Menu', 'select', '', ldev_get_menus());
+    $customizer->add_setting_control('ldev_header_left_menu_label', $section, 'Menu Label', 'text');
 
-    // Campo - Placeholder
-    $wp_customize->add_setting('ldev_blog_placeholder', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'ldev_blog_placeholder', [
-      'label'    => 'Imagem de Placeholder',
-      'section'  => 'ldev_section_outros',
-      'settings' => 'ldev_blog_placeholder',
-    ]));
-
-    // Background Produtos
-    $wp_customize->add_setting('ldev_products_background', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'ldev_products_background', [
-      'label'    => 'Background do Banner',
-      'section'  => 'ldev_section_products',
-      'settings' => 'ldev_products_background',
-    ]));
-
-    // Campo - Título
-    $wp_customize->add_setting('ldev_products_title', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_products_title', [
-      'label'       => 'Título',
-      'section'     => 'ldev_section_products',
-      'settings'    => 'ldev_products_title',
-      'description' => 'Título do Banner',
-      'type'        => 'text',
-    ]));
-
-    // Campo - Título
-    $wp_customize->add_setting('ldev_products_form', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_products_form', [
-      'label'       => 'Formulário',
-      'section'     => 'ldev_section_products',
-      'settings'    => 'ldev_products_form',
-      'description' => 'Formulário da Página do Produto',
-      'type'        => 'select',
-      'choices'     => ldev_get_forms(),
-    ]));
-        
+    // Adding settings and controls
+    $section = 'ldev_section_others';
+    $customizer->add_image_control('ldev_404_background', $section, 'Background 404');
+    $customizer->add_image_control('ldev_products_background', 'ldev_section_products', 'Background do Banner');
     
-    // CTA - Produtos
-    $wp_customize->add_setting('ldev_products_cta_headline', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    // insert message before field
-    $wp_customize->add_setting('ldev_products_cta_message', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_products_cta_message', [
-      'label'       => 'Os campos abaixo são para a CTA da Página de Listagem de Produtos.',
-      'section'     => 'ldev_section_products',
-      'settings'    => 'ldev_products_cta_message',
-      'type'        => 'hidden',
-    ]));
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_products_cta_headline', [
-      'label'       => 'Headline',
-      'section'     => 'ldev_section_products',
-      'settings'    => 'ldev_products_cta_headline',
-      'type'        => 'text',
-    ]));
-
-    $wp_customize->add_setting('ldev_products_cta_title', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_products_cta_title', [
-      'label'       => 'Título',
-      'section'     => 'ldev_section_products',
-      'settings'    => 'ldev_products_cta_title',
-      'type'        => 'text',
-    ]));
-
-    $wp_customize->add_setting('ldev_products_cta_description', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_products_cta_description', [
-      'label'       => 'Descrição',
-      'section'     => 'ldev_section_products',
-      'settings'    => 'ldev_products_cta_description',
-      'type'        => 'textarea',
-    ]));
-
-    $wp_customize->add_setting('ldev_products_cta_button_text', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_products_cta_button_text', [
-      'label'       => 'Texto do Botão',
-      'section'     => 'ldev_section_products',
-      'settings'    => 'ldev_products_cta_button_text',
-      'type'        => 'text',
-    ]));
-
-    $wp_customize->add_setting('ldev_products_cta_button_link', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_products_cta_button_link', [
-      'label'       => 'Link do Botão',
-      'section'     => 'ldev_section_products',
-      'settings'    => 'ldev_products_cta_button_link',
-      'type'        => 'select',
-      'choices'     => ldev_get_page_list(),
-    ]));
-
-    // Background Popup Orçamento
-    $wp_customize->add_setting('ldev_popup_orcamento_image', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'ldev_popup_orcamento_image', [
-      'label'    => 'Imagem',
-      'section'  => 'ldev_section_popup_orcamento',
-      'settings' => 'ldev_popup_orcamento_image',
-    ]));
-
-    // Campo - Título
-    $wp_customize->add_setting('ldev_popup_orcamento_title', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_popup_orcamento_title', [
-      'label'       => 'Título',
-      'section'     => 'ldev_section_popup_orcamento',
-      'settings'    => 'ldev_popup_orcamento_title',
-      'type'        => 'text',
-    ]));
-
-    // Campo - Título
-    $wp_customize->add_setting('ldev_popup_orcamento_form', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_popup_orcamento_form', [
-      'label'       => 'Formulário',
-      'section'     => 'ldev_section_popup_orcamento',
-      'settings'    => 'ldev_popup_orcamento_form',
-      'description' => '',
-      'type'        => 'select',
-      'choices'     => ldev_get_forms(),
-    ]));
-
-    // end popup orçamento
-
-    // Background Popup
-    $wp_customize->add_setting('ldev_popup_image', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'ldev_popup_image', [
-      'label'    => 'Imagem',
-      'section'  => 'ldev_section_popup',
-      'settings' => 'ldev_popup_image',
-    ]));
-
-    $wp_customize->add_setting('ldev_popup_show_options', [
-      'default'   => 'nenhum',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control('ldev_popup_show_options', [
-      'label'       => 'Exibição da Popup',
-      // 'description' => 'Quando e onde a Popup será exibida?',
-      'section'     => 'ldev_section_popup',
-      'settings'    => 'ldev_popup_show_options',
-      'type'        => 'select',
-      'default'     => 'nenhum',
-      'choices'     => [
+    $customizer->add_setting_control('ldev_products_title', 'ldev_section_products', 'Título', 'text', 'Título do Banner');
+    $customizer->add_setting_control('ldev_products_form', 'ldev_section_products', 'Formulário', 'select', 'Formulário da Página do Produto', ldev_get_forms());
+  
+    // CTA settings and controls
+    $customizer->add_setting_control('ldev_products_cta_message', 'ldev_section_products', 'Os campos abaixo são para a CTA da Página de Listagem de Produtos.', 'hidden');
+    $customizer->add_setting_control('ldev_products_cta_headline', 'ldev_section_products', 'Headline', 'text');
+    $customizer->add_setting_control('ldev_products_cta_title', 'ldev_section_products', 'Título', 'text');
+    $customizer->add_setting_control('ldev_products_cta_description', 'ldev_section_products', 'Descrição', 'textarea');
+    $customizer->add_setting_control('ldev_products_cta_button_text', 'ldev_section_products', 'Texto do Botão', 'text');
+    $customizer->add_setting_control('ldev_products_cta_button_link', 'ldev_section_products', 'Link do Botão', 'select', '', ldev_get_page_list());
+  
+    // Popup settings and controls
+    $customizer->add_image_control('ldev_popup_orcamento_image', 'ldev_section_popup_orcamento', 'Imagem');
+    $customizer->add_setting_control('ldev_popup_orcamento_title', 'ldev_section_popup_orcamento', 'Título', 'text');
+    $customizer->add_setting_control('ldev_popup_orcamento_form', 'ldev_section_popup_orcamento', 'Formulário', 'select', '', ldev_get_forms());
+    $customizer->add_image_control('ldev_popup_image', 'ldev_section_popup', 'Imagem');
+    $customizer->add_setting_control('ldev_popup_show_options', 'ldev_section_popup', 'Exibição da Popup', 'select', '', [
         'nenhum'  => 'Nenhum (ocultar)',
         'todas'   => 'Todas as Páginas',
         'home'    => 'Página Inicial',
         'blog'    => 'Página de Blog',
         'produto' => 'Página de Produtos',
         'contato' => 'Página de Contato',
-      ],
     ]);
-
-    $wp_customize->add_setting('ldev_popup_configs', [
-      'default'   => 'nenhum',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control('ldev_popup_configs', [
-      'label'       => 'Configuração da Popup',
-      'section'     => 'ldev_section_popup',
-      'settings'    => 'ldev_popup_configs',
-      'type'        => 'select',
-      'default'     => 'nenhum',
-      'choices'     => [
+    $customizer->add_setting_control('ldev_popup_configs', 'ldev_section_popup', 'Configuração da Popup', 'select', '', [
         'instantaneo'  => 'Instantâneo',
-        'exit'  => 'Intenção de Saída [exit intent]',
-        'scroll'  => 'Ao Scrollar',
-      ],
+        'exit'         => 'Intenção de Saída [exit intent]',
+        'scroll'       => 'Ao Scrollar',
     ]);
-      
-    // Campo - Headline
-    $wp_customize->add_setting('ldev_popup_headline', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_popup_headline', [
-      'label'       => 'Headline',
-      'section'     => 'ldev_section_popup',
-      'settings'    => 'ldev_popup_headline',
-      'description' => 'Título do Banner',
-      'type'        => 'text',
-    ]));
-
-    // Campo - Título
-    $wp_customize->add_setting('ldev_popup_title', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_popup_title', [
-      'label'       => 'Título',
-      'section'     => 'ldev_section_popup',
-      'settings'    => 'ldev_popup_title',
-      'description' => '',
-      'type'        => 'text',
-    ]));
-
-    // Campo - Título
-    $wp_customize->add_setting('ldev_popup_description', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_popup_description', [
-      'label'       => 'Descrição',
-      'section'     => 'ldev_section_popup',
-      'settings'    => 'ldev_popup_description',
-      'description' => '',
-      'type'        => 'textarea',
-    ]));
-    
-    $wp_customize->add_setting('ldev_popup_button_1_text', array(
-      'default'   => '',
-      'type'      => 'theme_mod',
-      'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control('ldev_popup_button_1_text', array(
-      'label'   => 'Texto do Botão Orçamento',
-      'section' => 'ldev_section_popup',
-      'type'    => 'text',
-    ));
-
-    
-    $wp_customize->add_setting('ldev_popup_button_1_link', array(
-      'default'   => '',
-      'type'      => 'theme_mod',
-      'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control('ldev_popup_button_1_link', array(
-      'label'   => 'Link do Botão Orçamento',
-      'section' => 'ldev_section_popup',
-      'type'    => 'select',
-      'choices' => ['nenhum' => 'Nenhum (ocultar)', 'contato' => 'Página de Contato', 'whatsapp' => 'WhatsApp'],
-    ));
-
-    $wp_customize->add_setting('ldev_popup_button_2_text', array(
-      'default'   => '',
-      'type'      => 'theme_mod',
-      'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control('ldev_popup_button_2_text', array(
-      'label'   => 'Texto do Botão 2',
-      'section' => 'ldev_section_popup',
-      'type'    => 'text',
-    ));
-    
-    $wp_customize->add_setting('ldev_popup_button_2_link', array(
-      'default'   => '',
-      'type'      => 'theme_mod',
-      'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control('ldev_popup_button_2_link', array(
-      'label'   => 'Link do Botão 2',
-      'section' => 'ldev_section_popup',
-      'type'    => 'select',
-      'choices' => ldev_get_page_list()
-    ));
-
-    // Campo - Título
-    $wp_customize->add_setting('ldev_footer_title', [
-      'default'   => '',
-      'transport' => 'refresh',
-      'type'      => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_footer_title', [
-      'label'       => 'Título',
-      'section'     => 'ldev_footer_general',
-      'settings'    => 'ldev_footer_title',
-      'description' => 'Título que aparece logo abaixo da Logo',
-      'type'        => 'text',
-    ]));
-
-    // Campo - Texto
-    $wp_customize->add_setting('ldev_footer_text', [
-      'default'   => '',
-      'type'      => 'theme_mod',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_footer_text', [
-      'label'    => 'Descrição',
-      'section'  => 'ldev_footer_general',
-      'settings' => 'ldev_footer_text',
-      'type'     => 'textarea',
-    ]));
-
-    $wp_customize->add_setting('ldev_section_footer_button_text', array(
-      'default'   => '',
-      'type'      => 'theme_mod',
-      'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control('ldev_section_footer_button_text', array(
-      'label'   => 'Texto do Botão',
-      'section' => 'ldev_footer_general',
-      'type'    => 'text',
-    ));
-    
-    $wp_customize->add_setting('ldev_section_footer_button_link', array(
-      'default'   => '',
-      'type'      => 'theme_mod',
-      'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control('ldev_section_footer_button_link', array(
-      'label'   => 'Link do Botão',
-      'section' => 'ldev_footer_general',
-      'type'    => 'select',
-      'choices' => ['nenhum' => 'Nenhum (ocultar)', 'popup' => 'Popup', 'contato' => 'Página de Contato', 'whatsapp' => 'WhatsApp'],
-    ));
-
-    $wp_customize->add_section('ldev_section_footer_cta', [
-      'title'       => 'CTA',
-      'description' => '',
-      'panel'       => 'ldev_section_footer', 
-      'priority'    => 20,
-    ]);
-
-    $wp_customize->add_setting('ldev_section_footer_show_social_media', [
-      'default'           => false,
-      'type'              => 'theme_mod',
-      'sanitize_callback' => 'ldev_sanitize_checkbox',
-    ]);
+    $customizer->add_setting_control('ldev_popup_headline', 'ldev_section_popup', 'Headline', 'text', 'Título do Banner');
+    $customizer->add_setting_control('ldev_popup_title', 'ldev_section_popup', 'Título', 'text');
+    $customizer->add_setting_control('ldev_popup_description', 'ldev_section_popup', 'Descrição', 'textarea');
+    $customizer->add_setting_control('ldev_popup_button_1_text', 'ldev_section_popup', 'Texto do Botão Orçamento', 'text');
+    $customizer->add_setting_control('ldev_popup_button_1_link', 'ldev_section_popup', 'Link do Botão Orçamento', 'select', '', ['nenhum' => 'Nenhum (ocultar)', 'contato' => 'Página de Contato', 'whatsapp' => 'WhatsApp']);
+    $customizer->add_setting_control('ldev_popup_button_2_text', 'ldev_section_popup', 'Texto do Botão 2', 'text');
+    $customizer->add_setting_control('ldev_popup_button_2_link', 'ldev_section_popup', 'Link do Botão 2', 'select', '', ldev_get_page_list());
   
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_section_footer_show_social_media', [
-      'label'       => 'Exibir Redes Sociais',
-      'section'     => 'ldev_footer_general', 
-      'settings'    => 'ldev_section_footer_show_social_media',
-      'type'        => 'checkbox',
-      'description' => 'Marque se você quer ou não exibir as redes sociais no rodapé.',
-    ]));
-
-
-    $wp_customize->add_setting('ldev_section_footer_cta_bg', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'ldev_section_footer_cta_bg', [
-      'label'    => 'Background',
-      'section'  => 'ldev_section_footer_cta',
-      'settings' => 'ldev_section_footer_cta_bg',
-    ]));
-
-    $wp_customize->add_setting('ldev_section_footer_cta_title', [
-      'default' => '',
-      'type'    => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control('ldev_section_footer_cta_title', [
-      'label'       =>'Título da CTA',
-      'section'     => 'ldev_section_footer_cta',
-      'settings'    => 'ldev_section_footer_cta_title',
-      'description' => 'Título da Call to Action.',
-      'type'        => 'textarea',
-    ]);
-
-    $wp_customize->add_setting('ldev_section_footer_cta_text', [
-      'default' => '',
-      'type'    => 'theme_mod',
-    ]);
-
-    $wp_customize->add_control('ldev_section_footer_cta_text', [
-      'label'       =>'Descrição da CTA',
-      'section'     => 'ldev_section_footer_cta',
-      'settings'    => 'ldev_section_footer_cta_text',
-      'description' => 'Descrição da Call to Action.',
-      'type'        => 'textarea',
-    ]);
-
-    $wp_customize->add_setting('ldev_section_footer_cta_link', array(
-      'default'  => '',
-      'type'     => 'theme_mod',
-    ));
-
-    $wp_customize->add_control('ldev_section_footer_cta_link', array(
-      'label'   => 'Link da CTA',
-      'section' => 'ldev_section_footer_cta',
-      'type'    => 'select',
-      'choices' => ['nenhum' => 'Nenhum (ocultar)', 'popup' => 'Popup de Orçamento', 'contato' => 'Página de Contato', 'whatsapp' => 'WhatsApp'],
-    ));
-
-    $wp_customize->add_setting('ldev_company_name', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_company_name', [
-      'label'    => 'Nome da Empresa',
-      'section'  => 'ldev_section_company_info',
-      'settings' => 'ldev_company_name',
-      'type'     => 'text',
-    ]));
-
-    $wp_customize->add_setting('ldev_company_hours', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_company_hours', [
-      'label'    => 'Horários de Atendimento',
-      'section'  => 'ldev_section_company_info',
-      'settings' => 'ldev_company_hours',
-      'type'     => 'textarea',
-    ]));
-
-    $wp_customize->add_setting('ldev_company_hours', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_company_address', [
-      'label'    => 'Endereço',
-      'section'  => 'ldev_section_company_info',
-      'settings' => 'ldev_company_address',
-      'type'     => 'textarea',
-    ]));
-
-    $wp_customize->add_setting('ldev_company_google_maps', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_company_google_maps', [
-      'label'    => 'Link Google Maps',
-      'section'  => 'ldev_section_company_info',
-      'settings' => 'ldev_company_google_maps',
-      'type'     => 'url',
-    ]));
+    // Footer settings and controls
+    $customizer->add_setting_control('ldev_footer_title', 'ldev_footer_general', 'Title', 'text', '');
     
-    $wp_customize->add_setting('ldev_company_email', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_company_email', [
-      'label'    => 'E-mail',
-      'section'  => 'ldev_section_company_info',
-      'settings' => 'ldev_company_email',
-      'type'     => 'email',
-    ]));
+    // $customizer->add_section('ldev_section_footer_cta', 'CTA', 20, 'ldev_section_footer');
+    // $customizer->add_image_control('ldev_section_footer_cta_bg', 'ldev_section_footer_cta', 'Background');
+    // $customizer->add_setting_control('ldev_section_footer_cta_title', 'ldev_section_footer_cta', 'Título da CTA', 'textarea', 'Título da Call to Action.');
+    // $customizer->add_setting_control('ldev_section_footer_cta_text', 'ldev_section_footer_cta', 'Descrição da CTA', 'textarea', 'Descrição da Call to Action.');
+    // $customizer->add_setting_control('ldev_section_footer_cta_link', 'ldev_section_footer_cta', 'Link da CTA', 'select', '', ['nenhum' => 'Nenhum (ocultar)', 'popup' => 'Popup de Orçamento', 'contato' => 'Página de Contato', 'whatsapp' => 'WhatsApp']);
+  
+    // Company Info settings and controls
+    $customizer->add_setting_control('ldev_company_name', 'ldev_section_company_info', 'Nome da Empresa', 'text');
+    $customizer->add_setting_control('ldev_company_hours', 'ldev_section_company_info', 'Horários de Atendimento', 'textarea');
+    $customizer->add_setting_control('ldev_company_address', 'ldev_section_company_info', 'Endereço', 'textarea');
+    $customizer->add_setting_control('ldev_company_google_maps', 'ldev_section_company_info', 'Link Google Maps', 'url');
+    $customizer->add_setting_control('ldev_company_email', 'ldev_section_company_info', 'E-mail', 'email');
+    $customizer->add_setting_control('ldev_company_phone', 'ldev_section_company_info', 'Telefone', 'tel');
+    $customizer->add_setting_control('ldev_company_whatsapp', 'ldev_section_company_info', 'WhatsApp', 'tel');
+    $customizer->add_setting_control('ldev_show_whatsapp', 'ldev_section_company_info', 'Exibir botão do WhatsApp?', 'checkbox');
     
-    // Campo - Telefone
-    $wp_customize->add_setting('ldev_company_phone', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_company_phone', [
-      'label'    => 'Telefone',
-      'section'  => 'ldev_section_company_info',
-      'settings' => 'ldev_company_phone',
-      'type'     => 'tel',
-    ]));
-
-    $wp_customize->add_setting('ldev_company_whatsapp', [
-      'default'   => '',
-      'transport' => 'refresh',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_company_whatsapp', [
-      'label'    => 'WhatsApp',
-      'section'  => 'ldev_section_company_info',
-      'settings' => 'ldev_company_whatsapp',
-      'type'     => 'tel',
-    ]));
-
-    // Campo WhatsApp
-    $wp_customize->add_setting('ldev_show_whatsapp', [
-      'default'           => false,
-      'sanitize_callback' => 'ldev_sanitize_checkbox',
-    ]);
-
-    $wp_customize->add_control('ldev_show_whatsapp', [
-      'label'   => 'Exibir botão do WhatsApp?',
-      'section' => 'ldev_section_company_info',
-      'type'    => 'checkbox',
-    ]);
-
-    // Campos - Links das Redes Sociais na seção Informações da Empresa
+    // Social Media Links
     $social_networks = [
       'facebook'  => 'Facebook',
       'instagram' => 'Instagram',
@@ -622,22 +141,10 @@ if (is_customize_preview()) {
     ];
 
     foreach ($social_networks as $network => $label) {
-      // Campo - Link da Rede Social
-      $wp_customize->add_setting('ldev_company_social_' . $network, [
-        'default'   => '',
-        'transport' => 'refresh',
-      ]);
-
-      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'ldev_company_social_' . $network, [
-        'label'    => $label,
-        'section'  => 'ldev_section_company_info',
-        'settings' => 'ldev_company_social_' . $network,
-        'type'     => 'url',
-      ]));
+      $customizer->add_setting_control('ldev_company_social_' . $network, 'ldev_section_company_info', $label, 'url');
     }
   }
   add_action('customize_register', 'ldev_customize_register');
-
   // Função de callback para sanitizar o valor do campo checkbox
   function ldev_sanitize_checkbox($value){
     return $value ? true : false;
@@ -667,6 +174,16 @@ if (is_customize_preview()) {
       $forms_list[$form->ID] = $form->post_title;
     }
     return $forms_list;
+  }
+
+  function ldev_get_menus(){
+    $locations = get_nav_menu_locations();
+    $menus = [];
+    foreach ($locations as $location => $menu_id) {
+      $menu = wp_get_nav_menu_object($menu_id);
+      $menus[$location] = isset($menu->name) ? $menu->name : 'Nenhum';
+    }
+    return $menus;
   }
 }
 

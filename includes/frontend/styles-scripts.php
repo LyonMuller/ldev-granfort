@@ -2,7 +2,7 @@
 // add style on admin page
 function ldev_admin_styles() {
   wp_enqueue_style('ldev-admin-styles', ldev_assets_url('css/admin.css'), [], ldev_ver(ldev_assets_url('css/admin.css')), 'all');
-  wp_enqueue_style('ldev-fonts', "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow+Semi+Condensed:wght@400;500;700&family=Barlow:ital,wght@0,300;0,600;0,700;1,800&display=swap");
+  // wp_enqueue_style('ldev-fonts', "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow+Semi+Condensed:wght@400;500;700&family=Barlow:ital,wght@0,300;0,600;0,700;1,800&display=swap");
 }
 add_action('admin_enqueue_scripts', 'ldev_admin_styles');
 
@@ -37,25 +37,15 @@ if (!is_admin()) {
 
   function ldev_fontes_head() {
     $banner = get_field('banner');
-    $imagem = isset($banner['imagens'][0]) ? 
-              $banner['imagens'][0]['url'] :
-              (isset($banner['imagem']['url']) ? $banner['imagem']['url'] : (isset($banner['background']) ? $banner['background']['url'] : ''));
-    $imagem_srcset = isset($banner['imagens'][0]) ? $banner['imagens'][0]['sizes']['large'] : (isset($banner['imagem']['sizes']['large']) ? $banner['imagem']['sizes']['large'] : (isset($banner['background']['sizes']['large']) ? $banner['background']['sizes']['large'] : ''));
+    $imagem = isset($banner[0]['background']['url']) ? $banner[0]['background']['url'] :
+              (isset($banner['background']['url']) ? $banner['background']['url'] : (isset($banner['background']) ? $banner['background']['url'] : ''));
     $ext = pathinfo($imagem, PATHINFO_EXTENSION);
     $type = 'image/'.$ext;
 
   ?>
-    <?php if($imagem): ?>
-      <link rel="preload" href="<?= $imagem ?>" fetchpriority="high" as="image" type="<?= $type ?>">
-    <?php endif; if($imagem_srcset) : ?>
-      <link rel="preload" href="<?= $imagem_srcset ?>" fetchpriority="high" as="image" type="<?= $type ?>">
-    <?php endif; ?>
+  <?php if($imagem): ?><link rel="preload" href="<?= $imagem ?>" fetchpriority="high" as="image" type="<?= $type ?>"><?php endif; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow+Semi+Condensed:wght@400;500;700&family=Barlow:ital,wght@0,300;0,600;0,700;1,800&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow+Semi+Condensed:wght@400;500;700&family=Barlow:ital,wght@0,300;0,600;0,700;1,800&display=swap" rel="stylesheet">
-    </noscript>
 <?php
   }
   add_action('wp_head', 'ldev_fontes_head', 10, 1);
@@ -71,6 +61,7 @@ if (!is_admin()) {
   function ldev_scripts() {
     wp_dequeue_script('jquery');
     wp_register_script('ldev-lazy-load',  ldev_assets_url('js/lazy-load.min.js'), [], ldev_ver(ldev_assets_url('js/lazy-load.min.js')), true);
+    wp_register_script('ldev-bs',  ldev_assets_url('js/bootstrap.min.js'), [], ldev_ver(ldev_assets_url('js/bootstrap.min.js')), true);
     wp_register_style('ldev-style',       ldev_assets_url('css/style.css'),       [], ldev_ver(ldev_assets_url('css/style.css')), 'print');
 
     wp_register_style('ldev-front-page',  ldev_assets_url('css/front-page.css'),   [], ldev_ver(ldev_assets_url('css/front-page.css')), 'print');
@@ -166,6 +157,7 @@ if (!is_admin()) {
     wp_enqueue_style('ldev-style');
 
     // Plugins
+    wp_enqueue_script('ldev-bs');
     wp_enqueue_script('jquery');
     wp_enqueue_script('main-js',    ldev_assets_url('js/main.min.js'), ['jquery'], ldev_ver(ldev_assets_url('js/main.min.js')), true);
     wp_enqueue_script('ldev-lazy-load');
@@ -182,7 +174,7 @@ if (!is_admin()) {
     foreach($scripts_to_defer as $script) {
       wp_script_add_data($script, 'defer', true);
     }
-    // wp_script_add_data('jquery-core', 'async', true);
+
   }
   add_action('wp_footer', 'ldev_footer_styles');
 

@@ -41,9 +41,6 @@ a
 .ff-normal
   font-family: $font-family-sans-serif
 
-.ff-headings
-  font-family: $font-family-semicondensed  
-
 .titulo
   text-wrap: balance
   b
@@ -51,7 +48,6 @@ a
     color: var(--ld-secondary)
 
 .headline
-  font-family: $font-family-condensed
   color: var(--ld-secondary)
   text-transform: uppercase
   letter-spacing: .15rem
@@ -89,6 +85,9 @@ a
 .t-secondary
   color: var(--ld-secondary)
 
+.t-brand
+  color: var(--ld-brand)
+
 .t-up
   text-transform: uppercase
 
@@ -101,6 +100,12 @@ a
 
 .bg-primary
   background-color: var(--ld-primary)
+
+.bg-brand
+  background-color: var(--ld-brand)
+
+.bg-brand-darker
+  background-color: var(--ld-brand-darker)
 
 .bg-secondary
   background-color: var(--ld-secondary)
@@ -117,18 +122,17 @@ a
 .bg-gradient
   background: $gradient
 
+.fs-display
+  font-size: clamp(min(10vw, $h1-font-size * 2), $h1-font-size, max(80vw, $h1-font-size * 2))
+
 .fs-lg
-  font-size: $h6-font-size
-  line-height: 1.2
+  font-size: $font-size-lg
 
 .fsn
   font-size: var(--ld-body-font-size)
 
 .fs-sm
   font-size: $font-size-sm
-
-.fs-sm-2
-  font-size: $font-size-base * .75
 
 .fwl
   font-weight: $font-weight-light
@@ -226,6 +230,9 @@ a
 .z1
   z-index: 1
 
+.z2
+  z-index: 2
+
 .ps-rel
   position: relative
 
@@ -257,6 +264,9 @@ a
 
 .px-0
   padding-left: 0
+  padding-right: 0
+
+.pr-0
   padding-right: 0
 
 .pt-1
@@ -448,6 +458,7 @@ a
   
   &.light-100
     border-color: var(--ld-light-100)
+  
 
   &__2
     border-width: 2px
@@ -460,7 +471,9 @@ a
   
   &.light-100
     border-color: var(--ld-light-100)
-
+  
+  &.gray-250
+    border-color: $gray-250
 
 .border-top
   border-top: 1px solid currentColor
@@ -497,7 +510,7 @@ a
   --size: #{$spacer * 1.1}
   --bg-size: contain
   --filter: none
-  --bg-image: url('')
+  --bg-image: none
   --color: var(--ld-body-bg)
   a
     font-size: 0
@@ -556,18 +569,10 @@ a
   background-color: rgba($black, .85)
 
 .btn-close
-  position: absolute
-  top: $spacer
-  right: $spacer
-  padding: $spacer * .5
   background: none
   border: 0
-  cursor: pointer
-  color: var(--ld-primary)
-  line-height: 1
-  transition: color .3s ease-in-out, scale .3s ease-in-out
+  transition: scale .3s ease-in-out
   &:hover
-    color: var(--ld-secondary)
     scale: 1.1
 
 

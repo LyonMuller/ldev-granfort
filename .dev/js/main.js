@@ -1,4 +1,5 @@
 // @koala-prepend "plugins/wow.min.js"
+
 const wow = new WOW({
   boxClass: 'wow', // animated element css class (default is wow)
   animateClass: 'animate__animated', // animation css class (default is animated)
@@ -63,18 +64,43 @@ function handleCookie() {
     popupCookie.classList.remove('d-none');
   }
 }
-
+ 
 document.addEventListener('DOMContentLoaded', () => {
   handleCookie();
-  const menuMobile = document.querySelector('.menu-mobile');
-  const elementsToToggle = document.querySelectorAll('.menu, .navbar, .navbar-fixed-top, #menu-cont, body');
-  const body_class = 'ovf-h';
 
-  menuMobile.addEventListener('click', (e) => {
-    elementsToToggle.forEach(elem => elem.classList.toggle('abrir'));
-    menuMobile.classList.toggle('abrir');
-    document.body.classList.toggle(body_class);
+  // show toggle .boat-links on .category-title click
+  const categoryTitle = document.querySelectorAll('.category-title');
+  const boatContainer = document.querySelector('.boat-container');
+  const boatLinks = document.querySelectorAll('.boat-links .nav-link');
+    
+  categoryTitle.forEach((title) => {
+    title.addEventListener('click', function() {
+      const boatLinksCont = this.nextElementSibling; // Assumindo que .boat-links é o próximo elemento
+      const isTitleOpen = this.classList.contains('show');
+      const openTitles = document.querySelectorAll('.category-title.show');
+  
+      // Verifica se o título clicado é o único aberto
+      if (isTitleOpen && openTitles.length === 1) return;
+  
+      // Remove a classe 'show' de todos os títulos e contêineres de links de barcos
+      categoryTitle.forEach((t) => t.classList.remove('show'));
+  
+      // Adiciona a classe 'show' apenas ao título e contêiner de links de barco clicados
+      this.classList.add('show');
+    });
   });
+
+  boatLinks.forEach((link) => {
+    link.addEventListener('mouseover', function() {
+      const bg = this.getAttribute('data-bg');
+      const text = this.textContent;
+      const bgUrl = `url(${bg})`;
+      
+      boatContainer.querySelector('.title-boat').setAttribute('data-text', text);
+      boatContainer.style.setProperty('--bg', bgUrl);
+    })
+  });
+
 
   // Delegação de eventos para dropdowns
   document.addEventListener('click', e => {

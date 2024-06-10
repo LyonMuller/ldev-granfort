@@ -49,7 +49,7 @@ gulp.task('javascript', () =>
 // Função para iniciar o browser
 function browser() {
   browserSync.init({
-    proxy: 'https://rudnick.local',
+    proxy: 'https://granfort.local',
     notify: false
   });
 }
@@ -61,8 +61,8 @@ gulp.task('browser-sync', browser);
 function watch() {
   gulp.watch('./.dev/**/*.scss', compilaSass);
   gulp.watch('./.dev/**/*.sass', compilaSass);
-  gulp.watch('./assets/**/*.js').on('change', browserSync.reload);
-  gulp.watch(['*.php', './**/*.php']).on('change', browserSync.reload);
+  gulp.watch(['./assets/**/*.js', './assets/css/*-critical.css', '*.php', './**/*.php']).on('change', browserSync.reload);
+  gulp.watch('./assets/**/*').on('change', browserSync.reload);
 }
 
 // Inicia a tarefa de watch

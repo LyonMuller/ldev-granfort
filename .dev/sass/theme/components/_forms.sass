@@ -2,45 +2,50 @@ form
   .wpforms-field-container
     display: flex
     flex-wrap: wrap
-    gap: $spacer      
-    &>*
+    padding: 0
+    margin-inline: calc(-.5*var(--ld-gutter-x))
+
+    &>*:not([class*="col"])
       flex: 0 0 100%
-    
-    .column
-      flex: 0 0 calc(50% - .5rem)
 
     &>div
       position: relative
+
+  .wpforms-field
+    padding-inline: $spacer
 
   ul
     list-style: none
     padding: 0
     margin-bottom: 0
-    
+
     li
       display: flex
       gap: $spacer * .5
-  
+
   .wpforms-recaptcha-container
     margin-block: $spacer
 
-  label
-    font-weight: 400
-    position: relative
-  
 
   .wpforms-field-description
     font-size: $font-size-sm * .8
     font-weight: bold
     color: $gray-600
+  
+  label:not(.wpforms-field-label-inline)
+    font-weight: 400
+    position: relative
+    font-size: $font-size-sm
+    translate: $spacer 50%
+    margin-top: -50%
+    background-color: var(--ld-body-bg)
+    padding-inline: $spacer * .25
 
-  label,
   input:is([type="text"], [type="tel"], [type="email"], [type="url"], [type="date"], [type="number"]),
   select,
   textarea
     font-size: $spacer
     display: block
-    font-family: $font-family-semicondensed
 
   input:is([type="text"], [type="tel"], [type="email"], [type="url"], [type="date"], [type="number"]),
   select,
@@ -48,27 +53,28 @@ form
     border: 0
     outline: 1px solid var(--ld-light-100)
     background-color: var(--ld-body-bg)
-    padding: calc($spacer / 2) $spacer
-    border-radius: var(--ld-border-radius-sm)
+    padding: calc($spacer / 1.5) $spacer
     width: 100%
     color: var(--ld-body-color)
     @include placeholder($gray-600)
     @include transition()
 
-
     &:is(focus, :active, :focus-within, :focus-visible)
-      outline: 2px solid var(--ld-secondary)
-      color: var(--ld-secondary)
+      outline: 2px solid var(--ld-brand)
+      color: var(--ld-brand)
       font-weight: 500
-    
+
     & + .wpforms-has-error em
       display: none
 
   select
-    padding: $spacer * .5945 $spacer
+    padding: $spacer * .729 $spacer
 
   .choices__inner
     border-color: var(--ld-light-100) !important
+  
+  .wpforms-field-checkbox
+    margin-top: $spacer
 
   .wpforms-has-error
     color: $danger
@@ -82,13 +88,13 @@ form
     textarea
       color: $danger
       outline-color: $danger
-  
+
   .wpforms-required-label,
   .wpforms-has-error em
     color: $danger
     font-size: $spacer
     font-style: normal
-  
+
   .wpforms-error-container p
     margin-block: $spacer
     background: $danger
@@ -98,7 +104,6 @@ form
     font-size: $font-size-sm
     font-weight: bold
     text-align: center
-
 
   .wpforms-submit
     display: block
@@ -114,7 +119,7 @@ form
     font-family: $btn-font-family
     transition: border-color .2s, background .2s, color .2s
     transition: border-color .2s, background .2s
-    
+
     &:disabled
       background: $gray-400
       border-color: $gray-400

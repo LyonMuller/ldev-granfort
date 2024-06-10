@@ -18,18 +18,19 @@ $enable-important-utilities:  false;
 $variable-prefix: ld-;
 $link-decoration: none;
 
-$primary:         #163963;
-$secondary:       #006AA8;
-$secondary-light: lighten($secondary, 10%);
-$logo-color:      #01495C;
-$light:           #F6F6F6;
+$primary:         #191C1F;
+$secondary:       #EF7051;
+$brand:           #00475B;
+$brand-darker:    #002D42;
+$light:           #F7F7F7;
 $light-100:       #E5E5E5;
 $light-color:     #f1f1ff;
 $success:         #2DB071;
 $nav-link-color:  #2C2C2C;
-$body-color:      #4C4C4C;
+$body-color:      #404040;
 $body-color-dark: #F5F5F5;
-$gray-600:        #888888; 
+$gray-600:        #808080; 
+$gray-250:        #BFBFBF; 
 $dark:            $secondary;
 
 $gradient: linear-gradient(315deg, var(--ld-primary) 0%, var(--ld-secondary) 100%);
@@ -37,13 +38,16 @@ $gradient: linear-gradient(315deg, var(--ld-primary) 0%, var(--ld-secondary) 100
 $theme-colors: (
   'primary':      $primary,
   'secondary':    $secondary,
+  'brand':        $brand,
+  'brand-darker': $brand-darker,
+  'gray':         $gray-600,
   'light':        $light,
   'light-100':    $light-100,
   'dark':         $dark,
   'white':      #fff,
 );
 
-$headings-color: var(--ld-primary);
+$headings-color: var(--ld-brand);
 $headings-color-dark: $primary;
 
 $text-shadow-black: 1px 2px 2px rgba(#000, .2);
@@ -51,7 +55,7 @@ $text-shadow-white: 1px 2px 2px rgba(#fff, .2);
 
 $nav-link-color:       $nav-link-color;
 $nav-link-hover-color: var(--ld-secondary);
-$btn-font-weight:      600;
+$btn-font-weight:      400;
 $headings-font-weight: 700;
 $nav-link-font-weight: 400;
 
@@ -65,17 +69,14 @@ $border-radius-lg: $spacer * .65;
 $btn-padding-y: calc($spacer / 1.5);
 $btn-padding-x: $spacer * 1.75;
 
-$font-family-sans-serif: 'Barlow', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$font-family-condensed: 'Barlow Condensed', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$font-family-semicondensed: 'Barlow Semi Condensed', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans-serif: 'Gomme Sans', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
-$headings-font-family: $font-family-sans-serif;
-$btn-font-family: $font-family-condensed;
-
-$font-size-base:     1.125rem;
-$font-weight-normal: 300;
+$font-size-base:     1rem;
+$font-weight-normal: 400;
 $font-weight-base:   $font-weight-normal;
 $headings-line-height: 1.25;
+
+$navbar-toggler-font-size: $font-size-base;
 
 $h1-font-size: $font-size-base * 2.8125;
 $h2-font-size: $font-size-base * 2.5;

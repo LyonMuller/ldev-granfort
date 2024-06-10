@@ -3,6 +3,16 @@
 ?>
 
 <div class="popup-cookie border light-100 border-radius bg-white box-shadow d-none">
-  <p class="popup-cookie__text ff-headings fs-sm">Utilizamos cookies para que você tenha a melhor experiência em nosso site. Para saber mais acesse nossa página de <a href="<?= $privacyPolicyUrl ?>" class="t-secondary fwb">Política de Privacidade.</a></p>
-  <button class="popup-cookie__btn btn-outline-primary">Entendi</button>
+<p class="popup-cookie__text ff-headings fs-sm mb-1">
+    <?php printf('We use cookies to ensure you have the best experience on our website.', THEME_TEXTDOMAIN); ?>
+  </p>
+  <p class="">  
+  <?php
+      printf(
+        __('To learn more, visit our <a href="%1$s" class="fwb">Privacy Policy</a> page.'),
+        esc_url($privacyPolicyUrl)
+      );
+    ?>
+  </p>
+  <button class="popup-cookie__btn"><?php printf('Accept', THEME_TEXTDOMAIN)?></button>
 </div>

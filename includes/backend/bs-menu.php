@@ -4,9 +4,8 @@
  * Autor: Lyon.dev_
  */
 function ldev_register_menu() {
-  register_nav_menu( 'menu-principal', __( 'Menu Principal' ) );
-  register_nav_menu( 'menu-blog', 		 __( 'Menu Blog' ) );
-  register_nav_menu( 'menu-footer', 	 __( 'Menu Rodapé' ) );
+  register_nav_menu( 'main-menu', __( 'Main Menu' ) );
+  register_nav_menu( 'footer-menu', 	 __( 'Footer Menu' ) );
 }
 add_action( 'init', 'ldev_register_menu' );
 

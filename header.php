@@ -27,8 +27,11 @@
         elseif(is_page_template('page-templates/sobre.php'))
           get_template_part( 'template-parts/header/banner', 'sobre');
 
-        elseif(is_page_template('page-templates/contato.php'))
-          get_template_part( 'template-parts/header/banner', 'contato');
+        elseif(is_page_template('page-templates/contact.php'))
+          get_template_part( 'template-parts/header/banner', 'contact');
+
+        elseif(is_page_template('page-templates/find-a-dealer.php'))
+          get_template_part( 'template-parts/header/banner', 'find-a-dealer');
 
         elseif(is_singular('produto'))
           get_template_part( 'template-parts/header/banner', 'single-produto');

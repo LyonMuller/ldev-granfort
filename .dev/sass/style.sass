@@ -8,8 +8,7 @@
 
 @import "theme/core/mixins"
 @import "theme/core/helpers"
-@import "theme/components/forms"
-
+@import "theme/components/fonts"
 @import "plugins/animate"
 
 @import "theme/components/social-media-icons"
@@ -19,6 +18,9 @@
 
 #error
   display: none
+
+:root
+  --ld-favicon: url(../img/svg/favicon.svg)
 
 @media (width <= 991px)
   @import "theme/responsive/parts/footer"

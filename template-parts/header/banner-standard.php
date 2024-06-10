@@ -5,7 +5,7 @@
   if(is_archive()) $titulo = get_the_archive_title();
 
   $headline  = get_sub_field('headline');
-  $mod_date = get_the_modified_date('d/m/Y');
+  $mod_date = get_the_modified_date('m/d/Y');
   // check if the current page is the policy page
   $is_policy = get_the_ID() == get_option('wp_page_for_privacy_policy');
   $template = get_page_template_slug();
@@ -18,9 +18,9 @@
     <div class="row aic jcc txt-ct">
       <div class="col-lg-8">
         <?php if($titulo): ?>
-          <h1 class="mb-0 h2 t-primary"><?= $titulo ?></h1>
+          <h1 class="mb-0 h2 fwl"><?= $titulo ?></h1>
         <?php endif; if($mod_date && $is_policy): ?>
-          <div class="desc mt-3 fs-sm fwb t-up">Ultíma Atualização: <?= $mod_date ?></div>
+          <div class="desc mt-3 fs-sm fwb t-up">Last Update: <?= $mod_date ?></div>
         <?php endif; ?>
       </div>
     </div>

@@ -521,9 +521,9 @@ add_filter('body_class', 'ldev_body_class');
 function ldev_social_media_links(){
   $social_networks = [
     'instagram' => 'Instagram',
+    'youtube'   => 'YouTube',
     'facebook'  => 'Facebook',
     'linkedin'  => 'LinkedIn',
-    'youtube'   => 'YouTube',
   ];
   $social_media_links = [];
   foreach ($social_networks as $network => $label) {
@@ -587,15 +587,8 @@ function ldev_check_empty($array) {
   return !$valorVazio;
 }
 
-function ldev_svg_animated($color = '#f5f5f5', $opacity = '.25', $class = 'mt-4 mb-5') {
-  if($color == null) $color = '#f5f5f5';
-  if($opacity == null) $opacity = '.25';
-  if($class == null) $class = 'mt-4 mb-5';
-  
-  return "<div class='wow w-100'>
-      <svg class='svg-divider $class animate-svg' viewBox='0 0 1242 80' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0 49.5H1006.06L1042.08 2.5H1241' stroke='$color' stroke-opacity='$opacity' /><circle cx='1239.5' cy='2.5' r='2.5' fill='$color' /></svg>
-    </div>"
-  ;
+function ldev_favicon() {
+  return ldev_logo_html(ldev_assets_url('img/svg/favicon.svg'));
 
 }
 

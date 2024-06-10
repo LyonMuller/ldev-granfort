@@ -1,7 +1,7 @@
 .footer-body
   .logo-footer
     display: inline-block
-    width: 200px
+    width: min(70vw, $spacer * 20)
     filter: brightness(0) invert(1)
     svg
       height: auto
@@ -14,75 +14,19 @@
 
   .sm-icons
     filter: brightness(0) invert(1)
-    --width: #{$spacer * 1.5}
-    --height: #{$spacer * 1.5}
+    --width: #{$spacer * 3}
+    --height: #{$spacer * 3}
         
 
   .menu-footer ul
-    padding-left: 0
+    padding: 0
+    margin-block: $spacer
     list-style: none
-    li
-      margin-block: $spacer
+    display: flex
+    gap: $spacer * 1.25
+    a
+      &:not(:hover)
+        color: $white
 
-      a
-        &:not(:hover)
-          color: $white
-        display: inline-flex
-        align-items: center
-     
   .copyright
-    padding-top: $spacer
-    padding-bottom: $spacer
-
-.info-cta
-  .grid
-    padding: $spacer * 2.5 $spacer * 2
-    position: relative
-    border-radius: var(--ld-border-radius-lg)
-    
-    h2, p
-      z-index: 2
-
-    h2
-      &:before
-        content: ''
-        display: block
-        background: var(--icon) no-repeat bottom center / contain
-        width: $spacer * 2.5
-        height: $spacer * 2.5
-        margin-block: 0 .5rem
-    
-    &.whatsapp
-      --icon: var(--whatsapp-logo)
-
-    &.popup,
-    &.contato-link
-      --icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23fff" d="M512 64c17.7 0 32 14.3 32 32v19.6L364.4 247.3c-16.9 12.4-39.9 12.4-56.8 0L128 115.6V96c0-17.7 14.3-32 32-32h352zM128 320V155.3l160.7 117.8c28.2 20.7 66.5 20.7 94.6 0L544 155.3V320c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32zm32-288c-35.3 0-64 28.7-64 64v224c0 35.3 28.7 64 64 64h352c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM32 112c0-8.8-7.2-16-16-16s-16 7.2-16 16v240c0 70.7 57.3 128 128 128h336c8.8 0 16-7.2 16-16s-7.2-16-16-16H128c-53 0-96-43-96-96V112z"/></svg>')
-
-    &:before
-      background: $gradient
-      z-index: 1
-      transition: outline .2s ease-in-out
-
-    &:before,
-    &:after
-      content: ''
-      display: block
-      position: absolute
-      inset: 0
-      border-radius: inherit
-    
-    &:after
-      background: var(--bg) center / cover
-      z-index: 0
-      translate: $spacer * 2.5 $spacer * 2.5
-      transition: scale .2s ease-in-out, translate .2s ease-in-out
-
-    &:hover
-      &:before
-        opacity: .85
-        outline: 2px solid rgba($white, .86)
-        
-      &:after
-        scale: 1
-        translate: 0 0
+    padding-block: $spacer * .5

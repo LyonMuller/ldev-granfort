@@ -1,70 +1,3 @@
-.navbar-brand
-  svg, img
-    width: 160px
-    height: auto
-
-.menu-topo
-  padding-block: $spacer
-  padding-inline: $spacer $spacer * 2
-  font-family: $font-family-semicondensed
-  background: var(--ld-body-bg)
-  .info-cta
-    margin-top: $spacer
-
-    &:before
-      display: none
-    
-    h2
-      font-size: $h6-font-size
-
-  .nav-item
-    .dropdown-toggle
-      &:after
-        content: ''
-        background: url('data:image/svg+xml,<svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.9851 1.97063L6.01463 5.99995L1.98532 2.02948" stroke="%23000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center / contain
-        width: $spacer * .8
-        height: $spacer * .6
-        margin-left: calc($spacer / 2)
-        display: inline-block
-        transition: transform .2s
-        position: absolute
-        right: calc($spacer * -.25)
-        top: 50%
-        transform: translateY(-50%)
-
-      &:hover
-        &::after
-          transform: translateY(-50%) rotate(-180deg)
-
-    &.btn
-      margin-left: $spacer
-      .nav-link
-        --ld-nav-link-color: var(--ld-white)
-        --ld-nav-link-color-hover: var(--ld-white)
-        background-color: var(--ld-primary)
-        border-radius: var(--ld-border-radius-sm)
-        transition: background-color .3s ease-in-out
-        text-decoration: none
-      
-      &:is(.active, :hover, :active, :focus)
-        .nav-link
-          background-color: var(--ld-secondary)
-  
-  .nav-link
-    --ld-nav-link-color-hover: var(--ld-secondary)
-    position: relative
-    margin: 0 calc($spacer / 5)
-    transition: color .3s ease-in-out, text-decoration-color .3s ease-in-out
-    text-underline-offset: .5rem
-    text-decoration: underline .15rem transparent
-
-    &:is(:focus, :hover, .active, [aria-current="page"])
-      color: var(--ld-nav-link-color-hover)
-      text-decoration-color: var(--ld-nav-link-color-hover)
-    
-    &:is(.active, [aria-current="page"])
-      font-weight: $font-weight-bold
-
 // Quando o menu scrollar
 .navbar-fixed-top
   position: fixed
@@ -73,12 +6,170 @@
   left: 0
   right: 0
   width: 100vw
-  transition: background-color .15s, box-shadow .15s
+  padding-block: $spacer
+  padding-inline: $spacer $spacer * 2
+  background: linear-gradient(180deg, rgba($black, 0.5) 0%, rgba($black, 0.495676) 6.67%, rgba($black, 0.482245) 13.33%, rgba($black, 0.45917) 20%, rgba($black, 0.426294) 26.67%, rgba($black, 0.384113) 33.33%, rgba($black, 0.334058) 40%, rgba($black, 0.278654) 46.67%, rgba($black, 0.221346) 53.33%, rgba($black, 0.165942) 60%, rgba($black, 0.115887) 66.67%, rgba($black, 0.0737057) 73.33%, rgba($black, 0.0408299) 80%, rgba($black, 0.017755) 86.67%, rgba($black, 0.0043236) 93.33%, rgba($black, 0) 100%)
+  transition: background-color .15s, box-shadow .15s, transform .15s
   transform: translate3d(0,0,0)
-  transition: transform .3s
+  
+  .navbar
+    --ld-navbar-color: var(--ld-white)
+
   &.transform-nav
     transform: translate3d(0,-100%,0)
+
   &.bg-white,
   &.border-bg
     background: $white
     box-shadow: var(--ld-box-shadow-sm)
+    .navbar
+      --ld-navbar-color: var(--ld-primary)
+
+    .navbar-brand svg path
+      fill: initial
+
+.privacy-policy
+  .navbar-fixed-top
+    background: $white
+    box-shadow: var(--ld-box-shadow-sm)
+    .navbar
+      --ld-navbar-color: var(--ld-primary)
+
+    .navbar-brand svg path
+      fill: initial
+
+#navbar-menu
+  grid-template-columns: repeat(3, 1fr)
+  
+.navbar-toggler
+  border: 0
+  transition: opacity .2s
+  &:hover
+    opacity: .75
+
+.navbar-brand
+  svg, img
+    width: 250px
+    height: auto
+
+  svg
+    path
+      fill: #fff
+
+.offcanvas
+  height: 100vh
+
+  .favicon
+    color: $gray-250
+    svg
+      block-size: $spacer * 3
+
+  .nav-link
+    --ld-nav-link-padding-x: 0
+    
+.offcanvas-header
+  border-bottom: 1px solid $gray-250
+
+.offcanvas-body
+  --ld-offcanvas-padding-y: 0
+
+#main-menu
+  --ld-offcanvas-width: min(80%, 320px)
+  --ld-nav-link-font-size: #{$font-size-lg}
+
+  .nav-item
+    &.active
+      --ld-nav-link-color: var(--ld-secondary)
+
+
+  .sep
+    --ld-nav-link-color: var(--ld-gray)
+    &:not(:last-of-type)
+      border-top: 1px solid $gray-250
+      margin-top: $spacer
+      .nav-link
+        margin-top: $spacer
+
+    &:last-child
+      border-bottom: 1px solid $gray-250
+      margin-bottom: $spacer
+      .nav-link
+        margin-bottom: $spacer
+
+#left-menu
+  width: 100dvw
+  height: 100dvh
+
+  .boats-menu
+    height: clamp(50dvh,82dvh,100vh)
+    overflow: clip auto 
+
+
+  .nav
+    display: grid
+
+  .nav-link
+    --ld-nav-link-font-size: #{$h6-font-size}
+    --ld-nav-link-color: var(--ld-gray)
+    
+    &.active
+      --ld-nav-link-color: var(--ld-primary)
+
+  .boat-links
+    order: 2
+    display: none
+
+  .category-title
+    --ld-nav-link-font-size: #{$h5-font-size}
+    --ld-nav-link-color: var(--ld-primary)
+    cursor: pointer
+    &:after
+      content: ''
+      display: block
+      block-size: $spacer * 1.25
+      flex: 0 1 $spacer * 1.25
+      background: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 15L12 9L6 15" stroke="%23191C1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center / contain
+      transition: transform .2s
+
+    &.show
+      color: var(--ld-secondary)
+      .boat-links
+        display: grid
+        
+      &:after
+        transform: rotate(180deg)
+     
+  .boat-container
+    flex-flow: column
+
+  .image-bg
+    background: var(--ld-primary) var(--bg) no-repeat center / cover
+    flex: 1
+    transition: background-image .1s
+
+  .text
+    background-color: #E5E5E5
+    padding: $spacer * 2.5
+    .favicon
+      color: currentColor
+      svg
+        height: $spacer * 2
+
+    h2
+      font-family: 'Uniwars', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+      line-height: 1
+      &:after
+        content: attr(data-text)
+  
+  .btn-black
+    background-color: var(--ld-primary)
+    right: 0
+    top: 0
+    bottom: 0
+    width: min-content
+    line-height: 1
+    padding-inline: $spacer * 2
+    transition: background-color .2s
+    &:hover
+      background-color: var(--ld-brand)
+      color: white
