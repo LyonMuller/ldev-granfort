@@ -15,8 +15,8 @@
     <?= file_get_contents(ldev_assets_url('css/single-produto-critical.css'), false, stream_context_create($arrContextOptions)); ?>
   <?php endif; if(is_singular('post')) : ?>
     <?= file_get_contents(ldev_assets_url('css/single-post-critical.css'), false, stream_context_create($arrContextOptions)); ?>
-  <?php endif; if(is_page_template('page-templates/sobre.php')): ?>
-    <?= file_get_contents(ldev_assets_url('css/sobre-critical.css'), false, stream_context_create($arrContextOptions)); ?>
+  <?php endif; if(is_page_template('page-templates/find-a-dealer.php')): ?>
+    <?= file_get_contents(ldev_assets_url('css/find-a-dealer-critical.css'), false, stream_context_create($arrContextOptions)); ?>
   <?php endif; ?>
 
   /* Responsive */

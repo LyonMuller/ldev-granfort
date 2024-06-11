@@ -1,0 +1,16 @@
+.front-boats
+  .active
+    color: var(--ld-secondary)
+  
+  .filters
+    button
+      letter-spacing: .1rem
+
+  button
+    transition: color .2s
+    &:hover:not([disabled])
+      color: var(--ld-secondary)
+
+  .disabled
+    color: var(--ld-light)
+    cursor: not-allowed

@@ -1,6 +1,11 @@
+.btn-unstyled
+  background: none
+  border: none
+  padding: 0
+  
 .btn-primary,
 .btn-white,
-.btn-outline-white
+.btn-outline
   padding: $spacer * 0.525 $spacer * 0.938
   display: inline-block
   border: 1px solid transparent
@@ -8,6 +13,21 @@
   font-size: $btn-font-size
   font-family: $btn-font-family
   transition: border-color .2s, background .2s, color .2s
+
+.btn-link
+  --color: var(--color, var(--ld-primary))
+  --hover-color: var(--hover-color, var(--ld-secondary))
+  padding-block: 0 $spacer * .15
+  display: inline-block
+  color: var(--color)
+  border-bottom: 1px solid currentColor
+  &:hover
+    color: var(--hover-color)
+
+  &.primary
+    --color: var(--ld-primary)
+    --hover-color: var(--ld-secondary)
+
 
 .btn-primary
   background: var(--ld-primary)
@@ -19,14 +39,27 @@
     background: darken($primary, 6%)
     border-color: darken($primary, 6%)
 
-.btn-outline-white
-  color: var(--ld-white)
-  border-color: var(--ld-white)
+
+.btn-outline
+  color: var(--color)
+  border-color: var(--bg-color)
   background: transparent
   transition: border-color .2s, background .2s
   &:hover
-    background: var(--ld-white)
-    color: var(--ld-primary)
+    background: var(--hover-bg-color)
+    color: var(--hover-color)
+    
+  &.white
+    --bg-color: var(--ld-white)
+    --color: var(--ld-white)
+    --hover-color: var(--ld-primary)
+    --hover-bg-color: var(--color)
+
+  &.primary
+    --bg-color: var(--ld-primary)
+    --color: var(--ld-primary)
+    --hover-color: var(--ld-white)
+    --hover-bg-color: var(--color)
 
 .btn-white
   background: var(--ld-white)

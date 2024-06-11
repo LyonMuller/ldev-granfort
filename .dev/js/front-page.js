@@ -109,4 +109,65 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     observer.observe(document.querySelector('.secao-banner__home .splide'));
   }
+
+  const itemsPerPage = 4;
+  const buttons = document.querySelectorAll('.filters button');
+  const boatItems = Array.from(document.querySelectorAll('.boat-item-cont'));
+  const prevPageButton = document.getElementById('prev-page');
+  const nextPageButton = document.getElementById('next-page');
+  const pageIndicator = document.getElementById('page-indicator');
+  const activeClass = 'active';
+  let currentPage = 1;
+  let filteredItems = [...boatItems];
+
+  const renderItems = () => {
+    boatItems.forEach(item => item.style.display = 'none');
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    filteredItems.slice(startIndex, endIndex).forEach(item => item.style.display = 'block');
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+    pageIndicator.innerHTML = `<span class="t-secondary">${currentPage}</span> / ${totalPages}`;
+
+    // Adicionar classe active aos itens visíveis
+    boatItems.forEach(item => item.classList.remove(activeClass));
+    filteredItems.slice(startIndex, endIndex).forEach(item => item.classList.add(activeClass));
+
+    // Atualizar visibilidade dos botões de paginação
+    // prevPageButton.classList.toggle = currentPage > 1 ? '' : 'disabled';
+    // nextPageButton.classList.toggle = currentPage < totalPages ? '' : 'disabled';
+    // change attr disabled to next/prev buttons
+    prevPageButton.disabled = currentPage === 1;
+    nextPageButton.disabled = currentPage === totalPages;
+  };
+
+  const filterItems = (filter) => {
+    filteredItems = filter === 'all' ? [...boatItems] : boatItems.filter(item => item.classList.contains(filter));
+    currentPage = 1;
+    renderItems();
+
+    // Adicionar classe active ao botão filtrado
+    buttons.forEach(button => button.classList.remove(activeClass));
+    document.querySelector(`button[data-filter="${filter}"]`).classList.add(activeClass);
+  };
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => filterItems(button.getAttribute('data-filter')));
+  });
+
+  prevPageButton.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderItems();
+    }
+  });
+
+  nextPageButton.addEventListener('click', () => {
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderItems();
+    }
+  });
+
+  renderItems(); // Initial render
 });

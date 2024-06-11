@@ -49,7 +49,7 @@
                     <?php if($button || $button_2): ?>
                       <div class="buttons gap-1 flex jcc aic mt-4">
                         <?php if($button) : ldev_btn($button, 'btn-white hover-secondary'); endif; ?>
-                        <?php if($button_2) : ldev_btn($button_2, 'btn-outline-white'); endif; ?>
+                        <?php if($button_2) : ldev_btn($button_2, 'btn-outline white'); endif; ?>
                       </div>
                     <?php endif; ?>
                   </div>

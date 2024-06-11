@@ -443,28 +443,28 @@ function ldev_logo_html($logo = '')
 }
 
 
-function ldev_get_limited_excerpt($excerpt)
-{
-  if (empty($excerpt)) {
-    // Se estiver vazio, pegue o conteúdo do post
-    $content = get_the_content();
+// function ldev_get_limited_excerpt($excerpt)
+// {
+//   if (empty($excerpt)) {
+//     // Se estiver vazio, pegue o conteúdo do post
+//     $content = get_the_content();
 
-    // Divida o conteúdo em parágrafos
-    $paragraphs = preg_split('/\n|\r\n?/', $content);
+//     // Divida o conteúdo em parágrafos
+//     $paragraphs = preg_split('/\n|\r\n?/', $content);
 
-    // Verifique se há parágrafos e pegue o primeiro
-    if (!empty($paragraphs)) $excerpt = $paragraphs[0];
-  } else {
-    // Se o campo do resumo estiver preenchido, pegue até a primeira frase do parágrafo
-    $sentences = preg_split('/(?<=[.!?])\s+/', $excerpt);
-    // verifica se a frase passa de 120 caracteres e corta se necessário
-    if (strlen($sentences[0]) > 120) $excerpt = substr($sentences[0], 0, 120) . '...';
-    else $excerpt = $sentences[0];
-  }
-  return $excerpt;
-}
+//     // Verifique se há parágrafos e pegue o primeiro
+//     if (!empty($paragraphs)) $excerpt = $paragraphs[0];
+//   } else {
+//     // Se o campo do resumo estiver preenchido, pegue até a primeira frase do parágrafo
+//     $sentences = preg_split('/(?<=[.!?])\s+/', $excerpt);
+//     // verifica se a frase passa de 120 caracteres e corta se necessário
+//     if (strlen($sentences[0]) > 120) $excerpt = substr($sentences[0], 0, 120) . '...';
+//     else $excerpt = $sentences[0];
+//   }
+//   return $excerpt;
+// }
 
-add_filter('get_the_excerpt', 'ldev_get_limited_excerpt');
+// add_filter('get_the_excerpt', 'ldev_get_limited_excerpt');
 
 function ldev_get_page_by_template($page_template)
 {
@@ -501,16 +501,10 @@ function ldev_breadcrumbs()
   else return;
 }
 
-// add class into body when have some conditions
 function ldev_body_class($classes)
 {
-  // check is home page and not paged
-  if (is_singular('produto')) :
-    $classes[] = 'wt-banner';
-  elseif(
-    (is_home() || is_archive() || is_search() || is_single() || is_page_template('page-templates/contato.php') || is_page() || is_404()) && 
-    !(is_front_page() || is_page_template('page-templates/quem-somos.php'))
-  ) :
+  $banner = get_field('banner');
+  if (empty($banner['background'])) :
     $classes[] = 'w-banner-spacing';
   endif;
   return $classes;

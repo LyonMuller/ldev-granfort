@@ -12,20 +12,11 @@
         if(is_front_page())
           get_template_part( 'template-parts/header/banner', 'front-page');
 
-        elseif(is_post_type_archive('produto') || is_tax('categoria_produto'))
-          get_template_part( 'template-parts/header/banner', 'produtos');
+        elseif(is_post_type_archive('boat') || is_tax('category_boat'))
+          get_template_part( 'template-parts/header/banner', 'archive-boat');
 
-        elseif(is_home() && !is_paged())
-          get_template_part( 'template-parts/header/banner', 'blog');
-        
-        elseif(is_archive() && is_paged())
-        get_template_part( 'template-parts/header/banner', 'archive');
-      
-        elseif(is_search())
-          get_template_part( 'template-parts/header/banner', 'search');
-
-        elseif(is_page_template('page-templates/sobre.php'))
-          get_template_part( 'template-parts/header/banner', 'sobre');
+        elseif(is_page_template('page-templates/about.php'))
+          get_template_part( 'template-parts/header/banner', 'about');
 
         elseif(is_page_template('page-templates/contact.php'))
           get_template_part( 'template-parts/header/banner', 'contact');
@@ -33,8 +24,8 @@
         elseif(is_page_template('page-templates/find-a-dealer.php'))
           get_template_part( 'template-parts/header/banner', 'find-a-dealer');
 
-        elseif(is_singular('produto'))
-          get_template_part( 'template-parts/header/banner', 'single-produto');
+        elseif(is_singular('boat'))
+          get_template_part( 'template-parts/header/banner', 'single-boat');
 
         elseif(!is_singular('post') && !is_paged())
           get_template_part( 'template-parts/header/banner', 'standard');
