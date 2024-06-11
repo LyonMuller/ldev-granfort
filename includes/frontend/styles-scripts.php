@@ -44,8 +44,6 @@ if (!is_admin()) {
 
   ?>
   <?php if($imagem): ?><link rel="preload" href="<?= $imagem ?>" fetchpriority="high" as="image" type="<?= $type ?>"><?php endif; ?>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <?php
   }
   add_action('wp_head', 'ldev_fontes_head', 10, 1);
@@ -69,8 +67,8 @@ if (!is_admin()) {
     
     wp_register_script('ldev-blog',      ldev_assets_url('js/blog.min.js'), [], ldev_ver(ldev_assets_url('js/blog.min.js')), true);
 
-    wp_register_style('ldev-sobre',  ldev_assets_url('css/sobre.css'),   [], ldev_ver(ldev_assets_url('css/sobre.css')), 'print');
-    wp_register_script('ldev-sobre', ldev_assets_url('js/sobre.min.js'), ['jquery'], ldev_ver(ldev_assets_url('js/sobre.min.js')), true);
+    wp_register_style('ldev-about',  ldev_assets_url('css/about.css'),   [], ldev_ver(ldev_assets_url('css/about.css')), 'print');
+    wp_register_script('ldev-about', ldev_assets_url('js/about.min.js'), ['jquery'], ldev_ver(ldev_assets_url('js/about.min.js')), true);
     
     wp_register_style('ldev-single-post',        ldev_assets_url('css/single-post.css'),        [], ldev_ver(ldev_assets_url('css/single-post.css')), 'print');
     
@@ -125,9 +123,9 @@ if (!is_admin()) {
       wp_enqueue_script('ldev-contato');
     endif;
 
-    if (is_page_template('page-templates/sobre.php')) :
-      wp_enqueue_style('ldev-sobre');
-      wp_enqueue_script('ldev-sobre');
+    if (is_page_template('page-templates/about.php')) :
+      wp_enqueue_style('ldev-about');
+      wp_enqueue_script('ldev-about');
     endif;
 
     if (is_page_template('page-templates/planos.php')) :
@@ -214,11 +212,7 @@ if (!is_admin()) {
     $defer_styles = array(
       'ldev-style',
       'ldev-front-page',
-      'ldev-sobre',
-      'ldev-produtos',
-      'ldev-suporte',
-      'ldev-contato',
-      'ldev-single-produto',
+      'ldev-about',
     );
 
     if (in_array($handle, $defer_styles)) {

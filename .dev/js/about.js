@@ -1,8 +1,8 @@
 // @koala-prepend "plugins/splide.js"
 document.addEventListener('DOMContentLoaded', function () {
   
-  if (document.querySelector('.depoimentos-slider')) {
-    const depoimentos = new Splide('.depoimentos-slider', {
+  if (document.querySelector('.splide')) {
+    const depoimentos = new Splide('.splide', {
       type: 'loop',
       arrows: true,
       autoplay: true,

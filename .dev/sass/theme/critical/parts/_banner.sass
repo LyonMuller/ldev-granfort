@@ -94,12 +94,14 @@ header
       font-size: clamp(min(10vw, 20rem), $h1-font-size, max(90vw, $h1-font-size * 3))
     
   &__sobre
-    background: var(--ld-primary) var(--bg)
-
     .row
-      min-height: calc(85dvh - var(--padding))
+      min-height: 100vh
+    
+    .title
+      line-height: .6
 
-  &__contato
+  &__contato,
+  &__sobre
     background: var(--ld-brand-darker) var(--bg) no-repeat center / cover
     border-image-source: linear-gradient(rgba($black, .4), rgba($black, .4))
     border-image-slice: fill 1

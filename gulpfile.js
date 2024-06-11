@@ -20,11 +20,11 @@ function compilaSass() {
           outputStyle: 'compressed',
         }),
       )
-      .pipe(
-        autoprefixer({
-          cascade: false,
-        }),
-      )
+      // .pipe(
+      //   autoprefixer({
+      //     cascade: false,
+      //   }),
+      // )
       .pipe(gulp.dest('assets/css/'))
       .pipe(browserSync.stream())
   );
@@ -62,7 +62,7 @@ function watch() {
   gulp.watch('./.dev/**/*.scss', compilaSass);
   gulp.watch('./.dev/**/*.sass', compilaSass);
   gulp.watch(['./assets/**/*.js', './assets/css/*-critical.css', '*.php', './**/*.php']).on('change', browserSync.reload);
-  gulp.watch('./assets/**/*').on('change', browserSync.reload);
+  // gulp.watch('./assets/**/*').on('change', browserSync.reload);
 }
 
 // Inicia a tarefa de watch
