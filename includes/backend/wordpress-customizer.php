@@ -57,15 +57,36 @@ if (is_customize_preview()) {
   
     // Adding sections
     $customizer->add_section('ldev_section_company_info', 'Company Info', 30);
-    $customizer->add_section('ldev_section_boats', 'Boats', 40);
+    $wp_customize->add_panel('ldev_section_boats', [
+      'title'    => 'Boats',
+      'priority' => 40,
+    ]);
+    $customizer->add_section('ldev_section_boats_page', 'Listing Page', 10, 'ldev_section_boats');
+    $customizer->add_section('ldev_section_boats_cta', 'CTA', 10, 'ldev_section_boats');
+
     $customizer->add_section('ldev_section_header', 'Header', 30);
     $wp_customize->add_panel('ldev_section_footer', [
       'title'    => 'Footer',
       'priority' => 31,
-      ]);
+    ]);
     $customizer->add_section('ldev_footer_general', 'Copyright', 10, 'ldev_section_footer');
     $customizer->add_section('ldev_section_others', 'Others', 30);
     
+    // ldev_section_boats
+    $section = 'ldev_section_boats_page';
+    $customizer->add_image_control('ldev_boats_background', $section, 'Listing Boats Background');
+    $customizer->add_setting_control('ldev_boats_title', $section, 'Title', 'text');
+
+    $section = 'ldev_section_boats_cta';
+    $customizer->add_setting_control('ldev_products_cta_message', $section, 'The fields below are for the CTA of the Product Listing Page.', 'hidden');
+    $customizer->add_setting_control('ldev_products_cta_headline', $section, 'Headline', 'text');
+    $customizer->add_setting_control('ldev_products_cta_title', $section, 'Title', 'text');
+    $customizer->add_setting_control('ldev_products_cta_description', $section, 'Text', 'textarea');
+    $customizer->add_setting_control('ldev_products_cta_button_text', $section, 'Button Text', 'text');
+    $customizer->add_setting_control('ldev_products_cta_button_link', $section, 'Button Link', 'select', '', ldev_get_page_list());
+
+    $customizer->add_setting_control('ldev_products_cta_button_2_text', $section, 'Button 2 Text', 'text');
+    $customizer->add_setting_control('ldev_products_cta_button_2_link', $section, 'Button 2 Link', 'select', '', ldev_get_page_list());
 
     $section = 'ldev_section_header';
     $customizer->add_setting_control('ldev_header_left_menu', $section, 'Menu', 'select', '', ldev_get_menus());
@@ -78,15 +99,7 @@ if (is_customize_preview()) {
     
     $customizer->add_setting_control('ldev_products_title', 'ldev_section_products', 'Título', 'text', 'Título do Banner');
     $customizer->add_setting_control('ldev_products_form', 'ldev_section_products', 'Formulário', 'select', 'Formulário da Página do Produto', ldev_get_forms());
-  
-    // CTA settings and controls
-    $customizer->add_setting_control('ldev_products_cta_message', 'ldev_section_products', 'Os campos abaixo são para a CTA da Página de Listagem de Produtos.', 'hidden');
-    $customizer->add_setting_control('ldev_products_cta_headline', 'ldev_section_products', 'Headline', 'text');
-    $customizer->add_setting_control('ldev_products_cta_title', 'ldev_section_products', 'Título', 'text');
-    $customizer->add_setting_control('ldev_products_cta_description', 'ldev_section_products', 'Descrição', 'textarea');
-    $customizer->add_setting_control('ldev_products_cta_button_text', 'ldev_section_products', 'Texto do Botão', 'text');
-    $customizer->add_setting_control('ldev_products_cta_button_link', 'ldev_section_products', 'Link do Botão', 'select', '', ldev_get_page_list());
-  
+    
     // Popup settings and controls
     $customizer->add_image_control('ldev_popup_orcamento_image', 'ldev_section_popup_orcamento', 'Imagem');
     $customizer->add_setting_control('ldev_popup_orcamento_title', 'ldev_section_popup_orcamento', 'Título', 'text');

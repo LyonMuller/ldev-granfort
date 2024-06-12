@@ -54,9 +54,9 @@
                               <?php endforeach; ?>
                             </div>
                           <?php endif; if($title): ?>
-                            <h3 class="timeline-item__title fwn mb-4"><?= $item['title'] ?></h3>
+                            <h3 class="timeline-item__title fwn mb-4"><?= $title ?></h3>
                           <?php endif; if($text) : ?>
-                            <div class="timeline-item__text"><?= $item['text'] ?></div>
+                            <div class="timeline-item__text"><?= $text ?></div>
                           <?php endif; ?>
                         </div>
                       <?php endif; if($image) : ?>

@@ -1,13 +1,13 @@
 <?php if(!defined('ABSPATH')) die('Access denied'); ?>
 <?php if(have_rows('vision_section')) : while(have_rows('vision_section')) : the_row();
   $title = get_sub_field('title');
-  $items  = get_sub_field('items');
+  $items = get_sub_field('items');
 
   if($title || !empty($items)) :
 ?>
-<div class="about-vision ps-rel ovf-h pt-6 pb-9">
+<div class="about-vision ps-rel ovf-h py-6">
   <div class="container">
-    <div class="row ais gap-y-2 jcc">
+    <div class="row ais gap-1 jcc">
       <?php if($title): ?>
         <div class="col description mb-5 wow animate__fadeIn">
           <h2 class="title mb-0 fwn txt-ct mb-0 t-up"><?= $title ?></h2>
@@ -18,7 +18,7 @@
         $title       = isset($item['title']) ? $item['title']            : '';
         $description = isset($item['description']) ? $item['description']: '';
         $last = end($items) === $item;
-        $class = $last ? 'col-md-12 gap-1 last' : 'col-md-6';
+        $class = $last ? 'col-md-12 gap-1 last jcc' : 'col-md-6 px-0';
         if(!$icon || !$image || !$title || !$description) continue;
       ?>
         <div class="flex item <?= $class ?>">
