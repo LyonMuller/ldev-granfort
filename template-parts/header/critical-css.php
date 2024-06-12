@@ -12,14 +12,13 @@ $css_files = [
   'front_page'     => 'css/front-page-critical.css',
   'contact'        => 'css/contact-critical.css',
   'about'          => 'css/about-critical.css',
-  'produto'        => 'css/produtos-critical.css',
+  'archive_boat'   => 'css/archive-boat-critical.css',
   'blog'           => 'css/blog-critical.css',
   'single_produto' => 'css/single-produto-critical.css',
   'single_post'    => 'css/single-post-critical.css',
   'find_a_dealer'  => 'css/find-a-dealer-critical.css',
   'responsive'     => 'css/responsive-critical.css',
 ];
-
 ?>
 
 <style>
@@ -35,8 +34,8 @@ $css_files = [
     if (is_page_template('page-templates/about.php')): 
       load_css($css_files['about'], $arrContextOptions);
     endif;
-    if (is_post_type_archive('produto') || is_tax('categoria_produto')): 
-      load_css($css_files['produto'], $arrContextOptions);
+    if (is_post_type_archive('boat') || is_tax('boat_category')): 
+      load_css($css_files['archive_boat'], $arrContextOptions);
     endif;
     if (is_home() || is_archive() || is_search() || is_paged()): 
       load_css($css_files['blog'], $arrContextOptions);

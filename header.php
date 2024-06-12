@@ -21,6 +21,12 @@
         elseif(is_page_template('page-templates/contact.php'))
           get_template_part( 'template-parts/header/banner', 'contact');
 
+        elseif(is_page_template('page-templates/owners-resources.php'))
+          get_template_part( 'template-parts/header/banner', 'owners-resources');
+
+        elseif(is_page_template('page-templates/become-a-dealer.php'))
+          get_template_part( 'template-parts/header/banner', 'become-a-dealer');
+
         elseif(is_page_template('page-templates/find-a-dealer.php'))
           get_template_part( 'template-parts/header/banner', 'find-a-dealer');
 

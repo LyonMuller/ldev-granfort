@@ -80,8 +80,11 @@ if (!is_admin()) {
     wp_register_style('ldev-contato',  ldev_assets_url('css/contato.css'),   [], ldev_ver(ldev_assets_url('css/contato.css')), 'print');
     wp_register_script('ldev-contato', ldev_assets_url('js/contato.min.js'), [], ldev_ver(ldev_assets_url('js/contato.min.js')), true);
 
-    wp_register_style('ldev-produtos',  ldev_assets_url('css/produtos.css'),   [], ldev_ver(ldev_assets_url('css/produtos.css')), 'print');
-    wp_register_script('ldev-produtos', ldev_assets_url('js/produtos.min.js'), [], ldev_ver(ldev_assets_url('js/produtos.min.js')), true);
+    wp_register_style('ldev-archive-boat',  ldev_assets_url('css/archive-boat.css'),   [], ldev_ver(ldev_assets_url('css/archive-boat.css')), 'print');
+    wp_register_script('ldev-archive-boat', ldev_assets_url('js/archive-boat.min.js'), [], ldev_ver(ldev_assets_url('js/archive-boat.min.js')), true);
+    
+    wp_register_style('ldev-owners-resources',  ldev_assets_url('css/owners-resources.css'),   [], ldev_ver(ldev_assets_url('css/owners-resources.css')), 'print');
+
   }
   add_action('wp_enqueue_scripts', 'ldev_scripts', 1000);
   
@@ -128,21 +131,14 @@ if (!is_admin()) {
       wp_enqueue_script('ldev-about');
     endif;
 
-    if (is_page_template('page-templates/planos.php')) :
-      wp_enqueue_style('ldev-planos');
-      wp_enqueue_script('ldev-planos');
+    if (is_page_template('page-templates/owners-resources.php')) :
+      wp_enqueue_style('ldev-owners-resources');
+      wp_enqueue_script('ldev-owners-resources');
     endif;
 
-    if (is_page_template('page-templates/suporte.php'))
-      wp_enqueue_style('ldev-suporte');
-
-    if (is_singular('solucao')) :
-      wp_enqueue_style('ldev-single-solucao');
-      wp_enqueue_script('ldev-single-solucao');
-    endif;
-    
-    if (is_post_type_archive('produto') || is_tax('categoria_produto')) :
-      wp_enqueue_style('ldev-produtos');
+    if (is_post_type_archive('boat') || is_tax('boat_category')) :
+      wp_enqueue_style('ldev-archive-boat');
+      wp_enqueue_script('ldev-archive-boat');
     endif;
 
     if (is_singular('post'))
@@ -213,6 +209,7 @@ if (!is_admin()) {
       'ldev-style',
       'ldev-front-page',
       'ldev-about',
+      'ldev-owners-resources',
     );
 
     if (in_array($handle, $defer_styles)) {

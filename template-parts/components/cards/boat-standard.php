@@ -1,6 +1,5 @@
 <?php 
   $boat = isset($args['boat']) && !empty($args['boat']) ? $args['boat'] : null;
-  // get the post thumbnail id
   $thumbnail_id = get_post_thumbnail_id($boat['id']);
 
 ?>
@@ -13,7 +12,7 @@
     <?= ldev_lazy_img($thumbnail_id, 'boat-thumb mb-3', 'thumbnail') ?>
     <button class="btn-unstyled btn-link">Discover</button>
     <?php if(isset($boat['excerpt']) && $boat['excerpt'] !== ''): ?>
-      <p class="t-gray mt-3"><?= esc_html($boat['excerpt']); ?></p>
+      <p class="t-gray mt-3 fs-sm"><?= esc_html($boat['excerpt']); ?></p>
     <?php endif; ?>
   </a>
 </div>

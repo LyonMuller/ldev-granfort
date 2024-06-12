@@ -23,8 +23,7 @@
             if($title || $headline || $text || $button || $button_2 || $background || $video ) :
           ?>
           <div class="splide__slide">
-            <div class="banner__home ps-rel" style="background-image: url(<?php echo $background['url']; ?>);">
-
+            <div class="banner__home ps-rel" style="background-image: url(<?= $background['url']; ?>);">
               <?php if($video) : ?>
                 <video
                   <?= $c === 0 ? 'autoplay' : '' ?>
@@ -43,10 +42,13 @@
               <div class="container">
                 <div class="row jcc txt-ct pb-6 ps-rel content aie">
                   <div class="col-lg-8">
-                    <p class="t-wh fs-lg mb-1 t-up fwn"><?php echo $headline; ?></p>
-                    <h1 class="title fwl t-wh mb-0"><?php echo $title; ?></h1>
-                    <div class="text t-wh my-4 fwn"><?php echo $text; ?></div>
-                    <?php if($button || $button_2): ?>
+                    <?php if($headline): ?>
+                      <p class="t-wh fs-lg mb-1 t-up fwn"><?= $headline; ?></p>
+                    <?php endif; if($title) : ?>
+                      <h1 class="title fwl t-wh mb-0"><?= $title; ?></h1>
+                    <?php endif; if($text) : ?>
+                      <div class="text t-wh my-4 fwn"><?= $text; ?></div>
+                    <?php endif; if(!empty($button) || !empty($button_2)): ?>
                       <div class="buttons gap-1 flex jcc aic mt-4">
                         <?php if($button) : ldev_btn($button, 'btn-white hover-secondary'); endif; ?>
                         <?php if($button_2) : ldev_btn($button_2, 'btn-outline white'); endif; ?>

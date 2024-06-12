@@ -101,10 +101,15 @@ header
       line-height: .6
 
   &__contato,
+  &__archive,
   &__sobre
     background: var(--ld-brand-darker) var(--bg) no-repeat center / cover
     border-image-source: linear-gradient(rgba($black, .4), rgba($black, .4))
     border-image-slice: fill 1
+
+  &__archive
+    .row
+      min-height: var(--height)
 
   &.banner-standard
     margin-top: $spacer * 4

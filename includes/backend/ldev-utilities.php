@@ -504,7 +504,7 @@ function ldev_breadcrumbs()
 function ldev_body_class($classes)
 {
   $banner = get_field('banner');
-  if (empty($banner['background'])) :
+  if (empty($banner['background']) && !is_front_page()) :
     $classes[] = 'w-banner-spacing';
   endif;
   return $classes;
