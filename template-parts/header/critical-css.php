@@ -1,26 +1,58 @@
-<?php $arrContextOptions=["ssl"=>["verify_peer"=>false,"verify_peer_name"=>true]];?>
+<?php
+$arrContextOptions = ["ssl" => ["verify_peer" => false, "verify_peer_name" => true]];
+
+// Função para carregar CSS
+function load_css($path, $contextOptions) {
+  echo file_get_contents(ldev_assets_url($path), false, stream_context_create($contextOptions));
+}
+
+// Array de configurações de CSS
+$css_files = [
+  'common'         => 'css/critical.css',
+  'front_page'     => 'css/front-page-critical.css',
+  'contact'        => 'css/contact-critical.css',
+  'about'          => 'css/about-critical.css',
+  'produto'        => 'css/produtos-critical.css',
+  'blog'           => 'css/blog-critical.css',
+  'single_produto' => 'css/single-produto-critical.css',
+  'single_post'    => 'css/single-post-critical.css',
+  'find_a_dealer'  => 'css/find-a-dealer-critical.css',
+  'responsive'     => 'css/responsive-critical.css',
+];
+
+?>
+
 <style>
   /* Crítico */
-  <?= file_get_contents(ldev_assets_url('css/critical.css'), false, stream_context_create($arrContextOptions)); ?>
-  
-  <?php if(is_front_page()): ?>
-    <?= file_get_contents(ldev_assets_url('css/front-page-critical.css'), false, stream_context_create($arrContextOptions)); ?>  
-  <?php endif; if(is_page_template('page-templates/contact.php')) : ?>
-    <?= file_get_contents(ldev_assets_url('css/contact-critical.css'), false, stream_context_create($arrContextOptions)); ?>
-  <?php endif; if(is_post_type_archive('produto') || is_tax('categoria_produto')) : ?>
-    <?= file_get_contents(ldev_assets_url('css/produtos-critical.css'), false, stream_context_create($arrContextOptions)); ?>
-  <?php endif; if(is_home() || is_archive() || is_search() || is_paged()) : ?>
-    <?= file_get_contents(ldev_assets_url('css/blog-critical.css'), false, stream_context_create($arrContextOptions)); ?>
-  <?php endif; if(is_singular('produto')) : ?>
-    <?= file_get_contents(ldev_assets_url('css/single-produto-critical.css'), false, stream_context_create($arrContextOptions)); ?>
-  <?php endif; if(is_singular('post')) : ?>
-    <?= file_get_contents(ldev_assets_url('css/single-post-critical.css'), false, stream_context_create($arrContextOptions)); ?>
-  <?php endif; if(is_page_template('page-templates/find-a-dealer.php')): ?>
-    <?= file_get_contents(ldev_assets_url('css/find-a-dealer-critical.css'), false, stream_context_create($arrContextOptions)); ?>
-  <?php endif; ?>
-
+  <?php
+    load_css($css_files['common'], $arrContextOptions); 
+    if (is_front_page()): 
+      load_css($css_files['front_page'], $arrContextOptions);
+    endif;
+    if (is_page_template('page-templates/contact.php')): 
+      load_css($css_files['contact'], $arrContextOptions);
+    endif;
+    if (is_page_template('page-templates/about.php')): 
+      load_css($css_files['about'], $arrContextOptions);
+    endif;
+    if (is_post_type_archive('produto') || is_tax('categoria_produto')): 
+      load_css($css_files['produto'], $arrContextOptions);
+    endif;
+    if (is_home() || is_archive() || is_search() || is_paged()): 
+      load_css($css_files['blog'], $arrContextOptions);
+    endif;
+    if (is_singular('produto')): 
+      load_css($css_files['single_produto'], $arrContextOptions);
+    endif;
+    if (is_singular('post')): 
+      load_css($css_files['single_post'], $arrContextOptions);
+    endif;
+    if (is_page_template('page-templates/find-a-dealer.php')): 
+      load_css($css_files['find_a_dealer'], $arrContextOptions);
+    endif;
+  ?>
   /* Responsive */
-  @media (width <= 991px){
-    <?= file_get_contents(ldev_assets_url('css/responsive-critical.css'), false, stream_context_create($arrContextOptions)); ?>
+  @media (width <= 991px) {
+    <?php load_css($css_files['responsive'], $arrContextOptions); ?>
   }
 </style>

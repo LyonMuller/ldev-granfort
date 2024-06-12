@@ -2,21 +2,21 @@
 document.addEventListener('DOMContentLoaded', function () {
   
   if (document.querySelector('.splide')) {
-    const depoimentos = new Splide('.splide', {
+    const history = new Splide('.splide', {
       type: 'loop',
       arrows: true,
       autoplay: true,
-      pagination: true,
-      gap: '2rem',
+      pagination: false,
+      gap: '1rem',
       interval: 6000,
-      perPage: 2,
+      perPage: 1,
       breakpoints: {
         768: {
           perPage: 1,
         }
       }
     });
-    depoimentos.mount(window.splide.Extensions);
+    history.mount(window.splide.Extensions);
   }
 
 });

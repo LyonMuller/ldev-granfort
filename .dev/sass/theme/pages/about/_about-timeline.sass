@@ -1,0 +1,50 @@
+.about-timeline
+  .timeline-item__image
+    aspect-ratio: 16/12
+  
+  .fs-display
+    line-height: 1
+    &:before,
+    &:after
+      content: ''
+      position: absolute
+      top: 50%
+      translate: 0 -50%
+
+    &::before
+      width: $spacer * .5
+      height: $spacer * .5
+      border-radius: 50%
+      background: currentColor
+      right: 45%
+
+    &::after
+      width: 60%
+      height: $spacer * .1
+      background: currentColor
+      right: -15%
+
+  .caption
+    bottom: $spacer * 2
+    left: 0
+    right: 0
+    
+    p
+      padding: $spacer * .25 $spacer * .5
+      display: inline-block
+
+  .splide__arrows
+    top: 50%
+    transform: translateY(-50%)
+    left: var(--position)
+    right: var(--position)
+    --position: #{-$spacer * 4}
+
+  .splide__arrow
+    position: absolute
+    color: var(--ld-gray)
+    transition: color .2s
+    &:hover
+      color: var(--ld-primary)
+    &--next
+      right: 0
