@@ -4,7 +4,6 @@ header
 .secao-banner
   &__home
     background: var(--ld-primary)
-    max-height: calc(var(--height) + #{$spacer * 4 * 2})
     max-width: 100dvw
     overflow: hidden
     
@@ -110,6 +109,17 @@ header
   &__archive
     .row
       min-height: var(--height)
+
+  &__boat
+    .row
+      min-height: inherit
+
+    .description
+      min-height: 100dvh
+      flex-flow: column
+      justify-content: space-between
+      align-items: center
+      padding-block: $spacer * 9 $spacer * 6
 
   &.banner-standard
     margin-top: $spacer * 4

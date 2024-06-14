@@ -1,8 +1,8 @@
 <?php if(!defined('ABSPATH')) die('Access denied'); ?>
 <?php if(have_rows('form_section')) : while(have_rows('form_section')) : the_row();
-  $title     = get_sub_field('title');
-  $text     = get_sub_field('text');
-  $form = get_sub_field('form');
+  $title = get_sub_field('title');
+  $text  = get_sub_field('text');
+  $form  = get_sub_field('form');
 
   if(($title || $text) && !empty($form)) :
 ?>

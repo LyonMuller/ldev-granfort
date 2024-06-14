@@ -1,7 +1,7 @@
 <?php if(!defined('ABSPATH')) die('Access denied'); ?>
-      <?php get_template_part('template-parts/components/modals/popup', 'cookie'); ?>
     </main>
     <footer class="footer-body">
+      <?php get_template_part('template-parts/components/modals/popup', 'cookie'); ?>
       <div class="bg-brand py-3">
         <div class="container ps-rel">
           <div class="row jcc txt-ct gap-y-2">

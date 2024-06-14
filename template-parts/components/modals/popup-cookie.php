@@ -9,7 +9,7 @@
   <p class="">  
   <?php
       printf(
-        __('To learn more, visit our <a href="%1$s" class="fwb">Privacy Policy</a> page.'),
+        __('To learn more, visit our <a href="%1$s" class="fwb cta">Privacy Policy</a> page.'),
         esc_url($privacyPolicyUrl)
       );
     ?>

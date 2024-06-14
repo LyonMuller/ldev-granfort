@@ -11,7 +11,8 @@
   if(!$menu_label && !$menu && !empty($categories)) return;
 ?>
 <div class="menu-boats">  
-  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#left-menu" aria-controls="left-menu" aria-label="Toggle navigation">
+  <button class="navbar-toggler gap-0-5 inline-flex aic" type="button" data-bs-toggle="offcanvas" data-bs-target="#left-menu" aria-controls="left-menu" aria-label="Toggle navigation">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
     <?= $menu_label ?>
   </button>
   <div class="offcanvas offcanvas-start" tabindex="-1" id="left-menu" aria-labelledby="offcanvasLabel">

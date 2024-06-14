@@ -70,20 +70,22 @@ if (!is_admin()) {
     wp_register_style('ldev-about',  ldev_assets_url('css/about.css'),   [], ldev_ver(ldev_assets_url('css/about.css')), 'print');
     wp_register_script('ldev-about', ldev_assets_url('js/about.min.js'), ['jquery'], ldev_ver(ldev_assets_url('js/about.min.js')), true);
     
-    wp_register_style('ldev-single-post',        ldev_assets_url('css/single-post.css'),        [], ldev_ver(ldev_assets_url('css/single-post.css')), 'print');
+    wp_register_style('ldev-single-boat',  ldev_assets_url('css/single-boat.css'),        [], ldev_ver(ldev_assets_url('css/single-boat.css')), 'print');
+    wp_register_script('ldev-single-boat', ldev_assets_url('js/single-boat.min.js'), [], ldev_ver(ldev_assets_url('js/single-boat.min.js')), true);
     
-    wp_register_style('ldev-single-post',        ldev_assets_url('css/single-post.css'),        [], ldev_ver(ldev_assets_url('css/single-post.css')), 'print');
-    
-    wp_register_style('ldev-single-produto',  ldev_assets_url('css/produto.css'),     [], ldev_ver(ldev_assets_url('css/produto.css')), 'print');
-    wp_register_script('ldev-single-produto', ldev_assets_url('js/produto.min.js'), [], ldev_ver(ldev_assets_url('js/produto.min.js')), true);
-
     wp_register_style('ldev-contato',  ldev_assets_url('css/contato.css'),   [], ldev_ver(ldev_assets_url('css/contato.css')), 'print');
     wp_register_script('ldev-contato', ldev_assets_url('js/contato.min.js'), [], ldev_ver(ldev_assets_url('js/contato.min.js')), true);
 
     wp_register_style('ldev-archive-boat',  ldev_assets_url('css/archive-boat.css'),   [], ldev_ver(ldev_assets_url('css/archive-boat.css')), 'print');
     wp_register_script('ldev-archive-boat', ldev_assets_url('js/archive-boat.min.js'), [], ldev_ver(ldev_assets_url('js/archive-boat.min.js')), true);
     
+
     wp_register_style('ldev-owners-resources',  ldev_assets_url('css/owners-resources.css'),   [], ldev_ver(ldev_assets_url('css/owners-resources.css')), 'print');
+    wp_register_script('ldev-owners-resources', ldev_assets_url('js/owners-resources.min.js'), [], ldev_ver(ldev_assets_url('js/owners-resources.min.js')), true);
+
+    wp_register_style('ldev-become-a-dealer',  ldev_assets_url('css/become-a-dealer.css'),   [], ldev_ver(ldev_assets_url('css/become-a-dealer.css')), 'print');
+    // wp_register_script('ldev-become-a-dealer', ldev_assets_url('js/become-a-dealer.min.js'), [], ldev_ver(ldev_assets_url('js/become-a-dealer.min.js')), true);
+    
 
   }
   add_action('wp_enqueue_scripts', 'ldev_scripts', 1000);
@@ -136,16 +138,19 @@ if (!is_admin()) {
       wp_enqueue_script('ldev-owners-resources');
     endif;
 
+    if (is_page_template('page-templates/become-a-dealer.php')) :
+      wp_enqueue_style('ldev-become-a-dealer');
+      wp_enqueue_script('ldev-archive-boat');
+    endif;
+
     if (is_post_type_archive('boat') || is_tax('boat_category')) :
       wp_enqueue_style('ldev-archive-boat');
       wp_enqueue_script('ldev-archive-boat');
     endif;
 
-    if (is_singular('post'))
-      wp_enqueue_style('ldev-single-post');
-
-    if (is_singular('produto')) :
-      wp_enqueue_script('ldev-single-produto');
+    if (is_singular('boat')) :
+      wp_enqueue_style('ldev-single-boat');
+      wp_enqueue_script('ldev-single-boat');
     endif;
     // CSS
     wp_enqueue_style('ldev-style');
@@ -210,6 +215,8 @@ if (!is_admin()) {
       'ldev-front-page',
       'ldev-about',
       'ldev-owners-resources',
+      'ldev-become-a-dealer',
+      'ldev-single-boat',
     );
 
     if (in_array($handle, $defer_styles)) {

@@ -10,7 +10,7 @@
   if ($message || $background || $title || $button_text || $button_link || $button_2_text || $button_2_link) :
 ?>
   <div class="col boat-cta-cont">
-    <div class="boat-cta h-100 px-2 py-2"
+    <div class="boat-cta h-100 px-2 pt-2 pb-9"
       style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%), url(<?= esc_url($background); ?>) no-repeat center / cover;"
     >
       <div class="boat-cta__content">

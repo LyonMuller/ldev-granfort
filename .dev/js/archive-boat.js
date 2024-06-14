@@ -8,6 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     '#prev-page',
     '#next-page',
     '#page-indicator',
-    -1
+    999
   );
 });

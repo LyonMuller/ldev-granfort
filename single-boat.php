@@ -1,0 +1,12 @@
+<?php if(!defined('ABSPATH')) die('Access denied'); 
+get_header();
+  get_template_part( 'template-parts/singles/boat/single-boat', 'menu');
+  get_template_part( 'template-parts/singles/boat/single-boat', 'overview');
+  get_template_part( 'template-parts/singles/boat/single-boat', 'hero');
+  get_template_part( 'template-parts/singles/boat/single-boat', 'video');
+  get_template_part('template-parts/taxonomies/boats/boat', 'technology');
+  get_template_part( 'template-parts/singles/boat/single-boat', 'gallery');
+  get_template_part( 'template-parts/singles/boat/single-boat', 'technical');
+  get_template_part( 'template-parts/singles/boat/single-boat', 'contact');
+  get_template_part('template-parts/pages/front-page/front', 'dealers');
+get_footer();

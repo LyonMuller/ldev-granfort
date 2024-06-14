@@ -8,7 +8,8 @@ function render_technology_columns($columns_data) {
       'text'     => $column['text'],
       'style'    => isset($column['style']) ? $column['style'] : 'bg-white',
     ];
-    get_template_part('template-parts/components/cards/technology', 'column', $args);
+    if(is_post_type_archive('boat') || is_tax('category_boat')) get_template_part('template-parts/components/cards/technology', 'column-archive', $args);
+    else get_template_part('template-parts/components/cards/technology', 'column', $args);
   }
 }
 
@@ -34,9 +35,9 @@ function get_technology_columns_data($is_archive) {
       foreach ($details_section['items'] as $item) {
         $columns_data[] = [
           'image'    => $item['image'],
-          'subtitle' => $item['subtitle'],
+          'subtitle' => $item['headline'],
           'title'    => $item['title'],
-          'text'     => $item['text'],
+          'text'     => $item['description'],
           'style'    => 'bg-light',
         ];
         $has_light_bg = true;
@@ -46,7 +47,6 @@ function get_technology_columns_data($is_archive) {
 
   // Determine the section background based on card styles
   $section_bg = $has_light_bg ? 'bg-white' : 'bg-light';
-
   return [$columns_data, $section_bg];
 }
 
@@ -55,7 +55,7 @@ $section_title = $is_archive ? get_theme_mod('ldev_boats_technology_section_titl
 if ($section_title) :
   list($columns_data, $section_bg) = get_technology_columns_data($is_archive);
 ?>
-  <div class="technology-section <?= esc_attr($section_bg); ?> py-6">
+  <section class="technology-section <?= esc_attr($section_bg); ?> py-6" id="details" data-section="Details & Techonology">
     <div class="container">
       <div class="row row-cols-lg-3 gap-y-2">
         <div class="col-lg-12">
@@ -64,5 +64,5 @@ if ($section_title) :
         <?php render_technology_columns($columns_data); ?>
       </div>
     </div>
-  </div>
+  </section>
 <?php endif; ?>

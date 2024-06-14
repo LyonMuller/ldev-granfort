@@ -50,8 +50,5 @@ $css_files = [
       load_css($css_files['find_a_dealer'], $arrContextOptions);
     endif;
   ?>
-  /* Responsive */
-  @media (width <= 991px) {
-    <?php load_css($css_files['responsive'], $arrContextOptions); ?>
-  }
+
 </style>

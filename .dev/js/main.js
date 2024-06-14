@@ -100,35 +100,4 @@ document.addEventListener('DOMContentLoaded', () => {
       boatContainer.style.setProperty('--bg', bgUrl);
     })
   });
-
-
-  // Delegação de eventos para dropdowns
-  document.addEventListener('click', e => {
-    const toggle = e.target.closest('[data-toggle="dropdown"]');
-    if (!toggle) return;
-
-    e.preventDefault();
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', !expanded);
-    const dropdownMenu = toggle.parentNode.querySelector('.dropdown-menu');
-    dropdownMenu.classList.toggle('show');
-  });
-
-  // Navegação suave para links de âncora
-  document.addEventListener('click', e => {
-    const link = e.target.closest('a[href*="#"]:not(.normal-click)');
-    if (!link) return;
-    if (link.getAttribute('href') === '#') return;
-    if (location.pathname.replace(/^\//, '') === link.pathname.replace(/^\//, '') && location.hostname === link.hostname) {
-      e.preventDefault();
-      const target = document.querySelector(link.hash);
-      if (!target) return;
-
-      const offsetTop = target.offsetTop - 110;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  });
 });

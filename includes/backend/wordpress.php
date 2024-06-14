@@ -155,7 +155,7 @@ function ldev_template_admin ( $post_states, $post ) {
   if ($template && function_exists('get_page_templates')) {
     $templates = get_page_templates(null, 'page');
     $template_name = array_search($template, $templates);
-    $post_states['template'] = "Página $template_name";
+    $post_states['template'] = "Template: $template_name";
   }
   return $post_states;
 }

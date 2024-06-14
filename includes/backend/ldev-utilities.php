@@ -616,3 +616,50 @@ function ldev_share_posts() {
   ];
   return $social_media;
 }
+
+
+function get_boats_with_documents() {
+  $boats = get_posts(array(
+    'post_type' => 'boat',
+    'posts_per_page' => -1,
+    'meta_query' => array(
+      array(
+        'key' => 'documents',
+        'compare' => 'EXISTS',
+      ),
+    ),
+  ));
+
+  $boats_with_docs = array();
+  $all_documents = array();
+
+  foreach ($boats as $boat) {
+    $documents = get_field('documents', $boat->ID);
+    if ($documents) {
+      $field_object = get_field_object('documents', $boat->ID);
+      $layouts = $field_object['layouts'];
+      $boat_docs = array();
+      foreach ($documents as $doc) {
+        $doc_title = $doc['acf_fc_layout']; // Nome do layout do documento
+        if (isset($layouts[$doc_title])) {
+          $doc_label = $layouts[$doc_title]['label']; // Label do layout do documento
+        } else {
+          $doc_label = ucfirst(str_replace('_', ' ', $doc_title)); // Caso não encontre o label, usar um fallback
+        }
+        $doc_fields = array(
+          'title' => $doc['title'],
+          'file' => $doc['file']['url'],
+          'label' => $doc_label,
+        );
+        $boat_docs[$doc_title] = $doc_fields;
+        $all_documents[$doc_title] = $doc_label;
+      }
+      $boats_with_docs[$boat->ID] = array(
+        'title' => get_the_title($boat->ID),
+        'documents' => $boat_docs,
+      );
+    }
+  }
+
+  return array('boats_with_docs' => $boats_with_docs, 'all_documents' => $all_documents);
+}

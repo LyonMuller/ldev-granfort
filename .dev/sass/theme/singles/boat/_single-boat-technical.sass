@@ -1,0 +1,59 @@
+.specifications-section
+
+  .divisor
+    display: inline-block
+    
+    filter: drop-shadow($spacer * 1 0 0 $gray-700)
+
+    &.t-secondary
+      margin-inline: $spacer 0
+    &.t-gray
+      filter: drop-shadow($spacer * 1 0 0 $gray-250)
+    
+  .boat-name
+    display: inline-block
+    margin-inline: $spacer * 2 0
+
+  .spec-item
+    flex-grow: 1
+    padding-inline: $spacer
+    &:not(:last-child)
+      &::after
+        content: ''
+        display: block
+        width: 1px
+        top: 50%
+        translate: 0 -50%
+        right: 0
+        bottom: 0
+        height: 80%
+        background: $gray-300
+        position: absolute
+
+  details
+    &[open]
+      summary
+        &:after
+          transform: rotate(180deg)
+
+  summary
+    &:after
+      content: ''
+      display: flex
+      width: $spacer * 1.575
+      height: $spacer * 1.575
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="%23000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m18 15-6-6-6 6"/></svg>') no-repeat center / contain
+      transition: transform 0.3s
+
+
+  .ps-sticky
+    top: $spacer * 5
+
+  .other-info
+    &:not(:last-child)
+      border-bottom: 1px solid $gray-300
+
+  .image
+    --margin: #{$spacer * -2.75}
+    translate: 0 var(--margin)
+    margin-bottom: var(--margin)

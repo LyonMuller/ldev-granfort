@@ -1,0 +1,18 @@
+.nav-boat-menu
+  z-index: $zindex-fixed + 1 
+  transition: transform .15s
+  top: 0
+
+  .nav
+    a
+      padding: $spacer
+      border-bottom: 3px solid transparent
+      display: inline-block
+      translate: 0 1px
+      transition: border-color .2s, color .2s
+      &:is(:hover, .active)
+        color: var(--ld-secondary)
+        border-color: currentColor
+        
+.front-dealers
+  z-index: $zindex-fixed + 2
