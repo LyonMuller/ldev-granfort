@@ -19,7 +19,7 @@ jobs:
       run: |
         rm -rf .dev
         rm -rf node_modules
-        rm -f .git
+        rm -rf .git
         rm -f .gitignore
         rm -f gulpfile.js
         rm -f package-lock.json
