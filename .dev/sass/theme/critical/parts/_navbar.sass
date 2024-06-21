@@ -25,8 +25,11 @@
     .navbar
       --ld-navbar-color: var(--ld-primary)
 
-    .navbar-brand svg path
-      fill: initial
+    .navbar-brand
+      svg
+        g:not(#gf)
+          path
+            fill: initial
 
 .w-banner-spacing,
 .privacy-policy
@@ -36,8 +39,11 @@
     .navbar
       --ld-navbar-color: var(--ld-primary)
 
-    .navbar-brand svg path
-      fill: initial
+    .navbar-brand
+      svg
+        g:not(#gf)
+          path
+            fill: initial
 
 #navbar-menu
   grid-template-columns: repeat(3, 1fr)
@@ -54,8 +60,9 @@
     height: auto
 
   svg
-    path
-      fill: #fff
+    g:not(#gf)
+      path
+        fill: #fff
 
 .offcanvas
   height: 100vh

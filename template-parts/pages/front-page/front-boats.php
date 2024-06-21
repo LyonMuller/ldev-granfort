@@ -6,6 +6,8 @@
   $args = [
     'post_type' => 'boat',
     'posts_per_page' => -1,
+    'orderby' => 'title',
+    'order' => 'ASC',
   ];
   $boats = new WP_Query($args);
 

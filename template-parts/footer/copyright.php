@@ -1,1 +1,1 @@
-<p class="t-wh mb-0 fwl fs-sm col">Copyright © <?= date('Y') . " " . get_theme_mod('ldev_footer_title') ?></p>
+<p class="t-wh mb-0 fwl fs-sm col">Copyright © <?= date('Y') . " " . get_theme_mod('ldev_footer_title') ?> - <a class="t-wh" href="https://influe.com.br" title="Developed by Influe">@Influe</a></p>

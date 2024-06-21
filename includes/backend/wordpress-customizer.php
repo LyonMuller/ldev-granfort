@@ -62,6 +62,20 @@ if (is_customize_preview()) {
         'settings' => $id,
       ]));
     }
+    public function add_video_control($id, $section, $label)
+    {
+      $this->wp_customize->add_setting($id, [
+        'default'   => '',
+        'transport' => 'refresh',
+      ]);
+
+      $this->wp_customize->add_control(new WP_Customize_Media_Control($this->wp_customize, $id, [
+        'label'    => $label,
+        'section'  => $section,
+        'settings' => $id,
+        'mime_type' => 'video',
+      ]));
+    }
   }
 
   function ldev_customize_register($wp_customize)
@@ -94,7 +108,8 @@ if (is_customize_preview()) {
 
     // Adding settings and controls for General section
     $section = 'ldev_section_boats_page_general';
-    $customizer->add_image_control('ldev_boats_background', $section, 'Listing Boats Background');
+    $customizer->add_image_control('ldev_boats_background', $section, 'Listing Boats Background (Used as placeholder for video.)',);
+    $customizer->add_video_control('ldev_boats_video_background', $section, 'Listing Boats Video Background');
     $customizer->add_setting_control('ldev_boats_title', $section, 'Title', 'text');
 
     // Adding settings and controls for CTA section
@@ -178,15 +193,6 @@ if (is_customize_preview()) {
     // Footer settings and controls
     $customizer->add_setting_control('ldev_footer_title', 'ldev_footer_general', 'Title', 'text', '');
 
-    // Company
-    $customizer->add_setting_control('ldev_company_name', 'ldev_section_company_info', 'Nome da Empresa', 'text');
-    $customizer->add_setting_control('ldev_company_hours', 'ldev_section_company_info', 'Horários de Atendimento', 'textarea');
-    $customizer->add_setting_control('ldev_company_address', 'ldev_section_company_info', 'Endereço', 'textarea');
-    $customizer->add_setting_control('ldev_company_google_maps', 'ldev_section_company_info', 'Link Google Maps', 'url');
-    $customizer->add_setting_control('ldev_company_email', 'ldev_section_company_info', 'E-mail', 'email');
-    $customizer->add_setting_control('ldev_company_phone', 'ldev_section_company_info', 'Telefone', 'tel');
-    $customizer->add_setting_control('ldev_company_whatsapp', 'ldev_section_company_info', 'WhatsApp', 'tel');
-    $customizer->add_setting_control('ldev_show_whatsapp', 'ldev_section_company_info', 'Exibir botão do WhatsApp?', 'checkbox');
     // Social Media Links
     $social_networks = [
       'facebook'  => 'Facebook',

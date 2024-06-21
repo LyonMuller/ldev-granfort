@@ -1,13 +1,31 @@
-<?php
+<?php if(!defined('ABSPATH')) die('Access denied');
+
   $term = get_queried_object();
-  $term_name = $term->name;
+  $term_name = isset($term->name) ? $term->name : '';
 
-  // get all terms from boat_category
+  // Array de ordem personalizada
+  $custom_order = ['Sport Line', 'Cruiser Line', 'Yatchs Line'];
 
+  // Obtendo todos os termos da taxonomia 'boat_category'
   $categories = get_terms([
     'taxonomy' => 'boat_category',
     'hide_empty' => true,
   ]);
+
+  function sort_terms_by_custom_order($categories, $custom_order) {
+    $ordered_terms = [];
+    foreach ($custom_order as $name) {
+      foreach ($categories as $category) {
+        if ($category->name === $name) {
+          $ordered_terms[] = $category;
+          break;
+        }
+      }
+    }
+    return $ordered_terms;
+  }
+
+  if (is_array($categories)) $categories = sort_terms_by_custom_order($categories, $custom_order);
 
   $tax = is_tax('boat_category') ? [
     'tax_query' => [[
@@ -15,26 +33,30 @@
       'field' => 'slug',
       'terms' => $term->slug 
     ]]
-  ] : '';
+  ] : [];
 
+  // Definir argumentos para WP_Query
   $args = [
     'post_type' => 'boat',
     'posts_per_page' => -1,
+    'orderby' => 'title',
+    'order' => 'ASC',
   ];
   
   if($tax) {
     $args = array_merge($args, $tax);
   }
 
+  // Executar a consulta WP_Query
   $query = new WP_Query($args);
   
   if($query->have_posts()) :
 ?>
   <section class="container py-6 boat-listing">
-    <?php if ($categories) : ?>
+    <?php if ($categories && is_array($categories)) : ?>
       <div class="row">
         <div class="filters flex jcc txt-ct mb-5 gap-1 aic w-100">
-        <button class="btn-unstyled active t-gray t-up" data-filter="all">All</button>
+          <button class="btn-unstyled active t-gray t-up" data-filter="all">All</button>
           <?php foreach ($categories as $category) : ?>
             <button class="btn-unstyled t-gray t-up" data-filter="<?= esc_attr($category->slug); ?>"><?= esc_html($category->name); ?></button>
           <?php endforeach; ?>
@@ -67,3 +89,8 @@
     </div>
   </section>
 <?php endif; ?>
+
+<?php
+  // Reset post data
+  wp_reset_postdata();
+?>
