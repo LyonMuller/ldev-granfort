@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       autoplay: true,
       pagination: true,
       gap: '0',
-      interval: 12000,
+      interval: 8000,
       lazyLoad: 'nearby',
     });
     banner.mount(window.splide.Extensions);
@@ -67,17 +67,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const allSlides = banner.Components.Elements.slides;
       allSlides.forEach(function (slide) {
         const video = slide.querySelector('video');
-        if (video) {
+        if (video && !video.paused) {
           video.pause();
         }
       });
       const video = slide.querySelector('video');
       if (video) {
-        video.play().catch(error => {
-          console.log('Error playing video:', error);
-        });
+        video.play();
       }
-      // Update button state to indicate autoplay is running
       isPaused = false;
       updateButtonState();
     });
@@ -89,9 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if (!isPaused) {
             const video = entry.target.querySelector('video');
             if (video && video.paused) {
-              video.play().catch(error => {
-                console.log('Error playing video:', error);
-              });
+              video.play();
             }
             banner.options = { ...banner.options, autoplay: true };
           }
@@ -100,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const allSlides = banner.Components.Elements.slides;
           allSlides.forEach(function (slide) {
             const video = slide.querySelector('video');
-            if (video) {
+            if (video && !video.paused) {
               video.pause();
             }
           });

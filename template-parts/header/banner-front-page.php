@@ -34,7 +34,7 @@
                   data-poster="<?= $background['url'] ?>"
                   data-src="<?= $video['url'] ?>"
                   preload="none"
-                  class="ps-abs inset-0 lozad" 
+                  class="ps-abs inset-0 object-cover video-bg lozad" 
                 >Desculpe, seu navegador não suporta vídeos incorporados, mas não se preocupe, você pode <a href="<?= $video['url'] ?>">baixá-lo</a>e assisti-lo com seu player de vídeo favorito!
                 </video>
               <?php endif; ?>
