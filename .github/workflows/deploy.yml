@@ -1,9 +1,9 @@
-name: Deploy to Main
+name: Deploy to Prod
 
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   deploy:
@@ -13,10 +13,20 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        ref: dev
+        ref: main
+
+    - name: Configure Git user
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: Create prod branch if it does not exist
+      run: |
+        git checkout prod || git checkout -b prod
 
     - name: Remove unwanted directories / files
       run: |
+        echo "Removendo arquivos e diretórios indesejados"
         rm -rf .dev
         rm -rf node_modules
         rm -f .gitignore
@@ -26,17 +36,16 @@ jobs:
 
     - name: Commit changes
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git checkout main || git checkout -b main
+        echo "Adicionando arquivos ao commit"
         git add -A
-        git commit -m 'Deploy para Main'
-        git push origin main --force
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        echo "Comitando mudanças"
+        git commit -m 'Deploy para Prod'
+        echo "Fazendo push para a branch prod"
+        git push https://x-access-token:${{ secrets.TOKEN }}@github.com/LyonMuller/ldev-granfort.git prod --force
 
     - name: Remove .git directory
       run: |
+        echo "Removendo diretório .git"
         rm -rf .git
 
     - name: Create Release
