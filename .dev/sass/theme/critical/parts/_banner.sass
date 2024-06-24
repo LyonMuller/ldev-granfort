@@ -1,12 +1,15 @@
 header
   --height: min(100vh, 1080px)
   --text-shadow: 3px 2px 5px rgba(0,0,0, .3)
-  
-.secao-banner
-  h1, h2
-    text-wrap: balance
-    line-height: 1.1
-    text-shadow: var(--text-shadow)
+  section
+    h1, h2
+      text-wrap: balance
+      line-height: 1.1
+    
+    h1, h2, p, [class^="btn"]
+      text-shadow: var(--text-shadow)
+.secao-banner  
+
   &__home
     background: var(--ld-primary)
     max-width: 100dvw
@@ -84,9 +87,6 @@ header
 
     .row
       min-height: var(--height)
-    
-    [class^="btn"], p
-      text-shadow: var(--text-shadow)
   
   &__404
     background: var(--ld-brand) var(--bg) no-repeat center / cover

@@ -663,3 +663,29 @@ function get_boats_with_documents() {
 
   return array('boats_with_docs' => $boats_with_docs, 'all_documents' => $all_documents);
 }
+
+if (!function_exists('ldev_sort_terms_by_custom_order')) {
+  function ldev_sort_terms_by_custom_order($categories, $custom_order) {
+    $ordered_terms = [];
+    foreach ($custom_order as $name) {
+      foreach ($categories as $category) {
+        if ($category->name === $name) {
+          $ordered_terms[] = $category;
+          break;
+        }
+      }
+    }
+    return $ordered_terms;
+  }
+}
+
+function ldev_get_sorted_boat_categories() {
+  $custom_order = ['Sport Series', 'Cruiser Series', 'Yacht Series'];
+
+  $categories = get_terms([
+    'taxonomy' => 'boat_category',
+    'hide_empty' => true,
+  ]);
+
+  return is_array($categories) ? ldev_sort_terms_by_custom_order($categories, $custom_order) : $categories;
+}

@@ -56,7 +56,7 @@
 
 .navbar-brand
   svg, img
-    width: 250px
+    width: clamp(250px, 50%, 300px)
     height: auto
 
   svg
@@ -70,7 +70,8 @@
   .favicon
     color: $gray-250
     svg
-      block-size: $spacer * 3
+      block-size: auto
+      inline-size: $spacer * 6
 
   .nav-link
     --ld-nav-link-padding-x: 0

@@ -9,7 +9,7 @@
 ?>
 <div class="front-why-granfort py-6 ps-rel ovf-h  bg-light">
   <div class="container">
-    <div class="row jcc row-cols-sm-1 row-cols-md-3 gap-y-2 wow animate__fadeIn">
+    <div class="row jcc row-cols-1 row-cols-md-3 gap-y-2 wow animate__fadeIn">
       <?php if($title || $image): ?>
         <div class="col-md-12 txt-ct">
           <?php if($title): ?>

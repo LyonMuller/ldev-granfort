@@ -22,6 +22,9 @@ $css_files = [
 ?>
 
 <style>
+  :root{
+    --ld-favicon-svg: url('data:image/svg+xml;base64,<?= base64_encode(ldev_favicon()) ?>')
+  }
   /* Crítico */
   <?php
     load_css($css_files['common'], $arrContextOptions); 
@@ -50,5 +53,8 @@ $css_files = [
       load_css($css_files['find_a_dealer'], $arrContextOptions);
     endif;
   ?>
-
+  /* Responsivo */
+  @media (width <= 991px) {
+    <?php load_css($css_files['responsive'], $arrContextOptions); ?>
+  }
 </style>

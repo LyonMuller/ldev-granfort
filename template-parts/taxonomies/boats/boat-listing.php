@@ -3,29 +3,8 @@
   $term = get_queried_object();
   $term_name = isset($term->name) ? $term->name : '';
 
-  // Array de ordem personalizada
-  $custom_order = ['Sport Line', 'Cruiser Line', 'Yatchs Line'];
-
   // Obtendo todos os termos da taxonomia 'boat_category'
-  $categories = get_terms([
-    'taxonomy' => 'boat_category',
-    'hide_empty' => true,
-  ]);
-
-  function sort_terms_by_custom_order($categories, $custom_order) {
-    $ordered_terms = [];
-    foreach ($custom_order as $name) {
-      foreach ($categories as $category) {
-        if ($category->name === $name) {
-          $ordered_terms[] = $category;
-          break;
-        }
-      }
-    }
-    return $ordered_terms;
-  }
-
-  if (is_array($categories)) $categories = sort_terms_by_custom_order($categories, $custom_order);
+  $categories = ldev_get_sorted_boat_categories();
 
   $tax = is_tax('boat_category') ? [
     'tax_query' => [[

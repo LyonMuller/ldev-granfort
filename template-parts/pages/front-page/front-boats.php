@@ -41,7 +41,7 @@
         <h2 class="title mb-4 fwn t-up"><?= $title ?></h2>
       </div>
       <?php if ($categories) : ?>
-        <div class="filters flex jcc txt-ct mb-4 gap-1 aic">
+        <div class="filters flex flex-wrap jcc txt-ct mb-4 gap-1 aic">
         <button class="btn-unstyled active t-gray t-up" data-filter="all">All</button>
           <?php foreach ($categories as $category) : ?>
             <button class="btn-unstyled t-gray t-up" data-filter="<?php echo esc_attr($category->slug); ?>"><?php echo esc_html($category->name); ?></button>

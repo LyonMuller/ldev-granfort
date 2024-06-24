@@ -10,7 +10,7 @@
 ?>
 <div class="front-technology py-6 ps-rel ovf-h">
   <div class="container">
-    <div class="row jcc ais row-cols-sm-1 row-cols-md-3 gap-y-2 wow animate__fadeIn">
+    <div class="row jcc ais row-cols-1 row-cols-md-3 gap-y-2 wow animate__fadeIn">
       <?php if($title || $text): ?>
         <div class="col-md-7 txt-ct">
           <?php if($title): ?>

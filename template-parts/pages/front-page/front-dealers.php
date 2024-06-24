@@ -9,7 +9,7 @@
 ?>
 <div class="front-dealers ps-rel ovf-h">
   <div class="container-fluid">
-    <div class="row jcc ais row-cols-sm-1 row-cols-md-2 gap-y-2 wow animate__fadeIn">
+    <div class="row jcc ais row-cols-1 row-cols-md-2 gap-y-2 wow animate__fadeIn">
       <?php if($title || !empty($items)): ?>
         <div class="col-md-3 pt-2 ovf-h px-1">
           <?php if($title): ?>

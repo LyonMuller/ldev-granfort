@@ -2,5 +2,7 @@
 
 @import "../theme/pages/front-page/*"
 
-@media (width < 991px)
-  // @import "../theme/responsive/pages/front-page/front-descricao"
+@include media-breakpoint-down(md)
+  @import "../theme/responsive/pages/front-page/front-boats"
+  @import "../theme/responsive/pages/front-page/front-social-media"
+  @import "../theme/responsive/pages/front-page/front-dealers"

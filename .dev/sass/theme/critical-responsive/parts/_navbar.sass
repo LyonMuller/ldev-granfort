@@ -1,151 +1,22 @@
-// Navbar styles
+.navbar-brand
+  background-color: var(--ld-secondary)
+  mask: var(--ld-favicon-svg) no-repeat center / contain
+  height: 100%
+  svg
+    display: none
+
 .navbar-fixed-top
-  max-width: 100dvw
-  z-index: $zindex-fixed + 3
-  .navbar-brand
-    position: relative
-    z-index: $zindex-fixed + 4
-    path
-      transition-delay: .3s
-      transition: all .3s ease
-
-  .menu
-    overflow: hidden
-    position: absolute
-
-  &.abrir
-    .navbar-brand
-      svg path
-        fill: $white
-
-
-// Mobile menu button styles
-.menu-mobile
-  --bars-color: #{$white}
-  z-index: $zindex-fixed + 1
-  background: var(--ld-primary)
-  display: block
-  position: absolute
-  right: 0
-  border: 0
-  outline: 0 none
-  padding-bottom: 0
-
-  &:active,
-  &:focus
-    box-shadow: none
-    outline: 0 none
-
-  i
-    background-color: var(--bars-color)
-    border-radius: var(--ld-border-radius-pill)
-    height: 2px
-    width: 20px
-    display: inline-block
-    margin: 13px 3px
-    position: relative
-    transition: background-color .3s ease
-
-    &:after,
-    &:before
-      content: ''
-      transform: rotate(0deg)
-      background-color: var(--bars-color)
-      border-radius: var(--ld-border-radius-pill)
-      height: 2px
-      width: 20px
-      position: absolute
-      transition: 0.3s
-      left: 0
-
-    &:after
-      top: -6px
-
-    &:before
-      left: auto
-      right: 0
-      bottom: -6px
-
-  &.abrir
-    background-color: var(--ld-secondary)
-    i
-      background-color: transparent
-      &:after
-        top: 0
-        transform: rotate(45deg)
-
-      &:before
-        bottom: 0
-        width: 20px
-        transform: rotate(-45deg)
-
-      &:after,
-      &:before
-        transition: 0.3s
-
-// Menu container styles
-#navbar-menu #menu-cont
-  transform: translate3d(120%, 0, 0)
-  background: var(--ld-primary)
-  padding: $spacer * 3 $spacer * 2 0 $spacer * 2
-  border-radius: 0
-  position: fixed
-  left: 0
-  right: 0
-  margin: auto
-  top: 0
-  width: 100vw
-  min-width: 100vw
-  height: 100dvh
-  display: block
-  transition: transform .5s
-  will-change: transform
-
-  &.abrir
-    z-index: $zindex-fixed
-    transform: translate3d(0,0,0)
-  
-  .nav
-    --ld-nav-link-font-weight: #{$font-weight-light}
-    --ld-nav-link-color: #{$white}
-    --ld-nav-link-hover-color: #{$secondary}
-    list-style: none
-    display: grid
-    gap: $spacer
-    margin: $spacer * 3.5 0 0
+  padding: $spacer $spacer * .5
+  #navbar-menu
+    display: flex
+    align-items: stretch
     padding: 0
-    width: 100%
 
-    .nav-item
-      &:first-child
-        margin-top: 0
+  .logo
+    flex: 1 0 0%
+    width: clamp(100px, 50%, 250px)
+  
+  button
+    padding: 0 $spacer * .15
 
-      &:last-child
-        margin-bottom: 0
-
-      &.btn
-        --ld-nav-link-color: #{$white}
-        --ld-nav-link-background: #{$secondary}
-        .nav-link
-          margin: 0
-        
-        &:is(.active,:focus)
-          --ld-nav-link-color: #{$white}
-        --ld-nav-link-background: #{lighten($secondary, 10%)}
-
-      .nav-link
-        font-size: clamp($spacer, $spacer + 2vw, $h4-font-size)
-        color: var(--ld-nav-link-color)
-        background: var(--ld-nav-link-background, transparent)
-        line-height: 1.5
-        display: inline-block
-        &:is(:hover, :focus, :active)
-          --ld-nav-link-color: var(--ld-nav-link-hover-color)
-
-        &.dropdown-toggle
-          padding-bottom: calc($spacer / 2)
-
-      &:is(.active,:focus)
-        .nav-link
-          --ld-nav-link-color: var(--ld-nav-link-hover-color)
-          background: none
+  
