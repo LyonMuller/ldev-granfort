@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   update_prod_branch:
     runs-on: ubuntu-latest
@@ -48,6 +51,6 @@ jobs:
 
       - name: Push to prod branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           git push origin prod --force
