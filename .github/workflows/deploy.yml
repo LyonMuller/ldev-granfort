@@ -29,6 +29,7 @@ jobs:
           else
             git checkout -b prod
             git merge --no-ff main -m "Merge branch 'main' into 'prod'"
+          fi
 
       - name: Remove unwanted files and directories
         run: |
@@ -44,12 +45,6 @@ jobs:
         run: |
           git add .
           git commit -m "Remove unwanted files and directories"
-      
-      - name: Remove Git files
-        run: |
-          rm -rf .git
-          rm -f .gitignore
-          rm -f .gitattributes
 
       - name: Push to prod branch
         env:
