@@ -46,7 +46,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
       run: |
         echo "Configurando remote para autenticação com token"
-        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/LyonMuller/ldev-granfort.git
+        git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/LyonMuller/ldev-granfort.git
         echo "Fazendo push para a branch prod"
         git push origin prod --force
 
