@@ -90,23 +90,6 @@ function ldev_custom_login_logo_alt() {
 add_filter('login_headertext', 'ldev_custom_login_logo_alt');
 
 /**
- * Altera o texto do rodapé no painel do Administrador.
- * Autor: Lyon.dev_
- *
- * @return string Nome do Desenvolvedor + WordPress.
- */
-function ldev_footer_admin(){
-	echo '<p style="display: flex; align-items: center; gap: 5px;">&copy; ' . date('Y') . ' - ' . get_bloginfo('name') . ' | 
-					Criado por
-					<a style="display: inline-flex; align-items: center; padding-top: 3px" href="https://lyon.dev/?ref=wp-admin&site='.sanitize_text_field(get_bloginfo('name')).'" target="_blank">
-						<img src="https://lyon.dev/img/logo-gray.svg" width="70" alt="Lyon.dev_">
-						<span style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0; ">Lyon.dev_</span>
-					</a> usando <a href="http://www.wordpress.org">WordPress</a>
-				</p>';
-}
-add_filter('admin_footer_text', 'ldev_footer_admin');
-
-/**
  * Filtros de otimização.
  * Autor: Lyon.dev_
  */

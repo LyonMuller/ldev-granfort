@@ -64,7 +64,7 @@
             </nav>
           </div>
         </div>
-        <div class="col-md-8 pr-0 boat-container mh-100 flex" style="--bg: url(<?= get_the_post_thumbnail_url($first_post) ?>)">
+        <div class="col-md-8 pr-0 boat-container flex" style="--bg: url(<?= get_the_post_thumbnail_url($first_post) ?>)">
           <div class="image-bg"></div>
           <div class="text flex t-primary gap-1 aic ps-rel">
             <div class="favicon"><?= ldev_favicon() ?></div>

@@ -6,6 +6,7 @@
   $button_link   = get_theme_mod('ldev_products_cta_button_link');
   $button_2_text = get_theme_mod('ldev_products_cta_button_2_text');
   $button_2_link = get_theme_mod('ldev_products_cta_button_2_link');
+  $button_2_link = get_theme_mod('ldev_boats_cta_section_button_2_link') ? get_permalink(get_theme_mod('ldev_boats_cta_section_button_2_link')) : '';
 
   if ($message || $background || $title || $button_text || $button_link || $button_2_text || $button_2_link) :
 ?>
@@ -18,8 +19,11 @@
           <h2 class="boat-cta__title h4 t-wh fwn"><?= esc_html($title); ?></h2>
         <?php endif; ?>
         <div class="gap-y-1 flex flex-wrap">
-          <a href="<?= esc_url($button_link); ?>" class="btn-white"><?= esc_html($button_text); ?></a>
-          <a href="<?= esc_url($button_2_link); ?>" class="btn-outline white"><?= esc_html($button_2_text); ?></a>
+          <?php if($button_link && $button_text): ?>
+            <a href="<?= esc_url($button_link); ?>" class="btn-white"><?= esc_html($button_text); ?></a>
+          <?php endif; if($button_2_link && $button_2_text) : ?>
+            <a href="<?= esc_url($button_2_link); ?>" class="btn-outline white"><?= esc_html($button_2_text); ?></a>
+          <?php endif; ?>
         </div>
       </div>
     </div>

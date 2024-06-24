@@ -43,7 +43,7 @@
           <?php endif;?>
         </div>
       <?php endif; if($iframe) : ?>
-        <div class="col-md-9 map pr-0">
+        <div class="col map px-0">
           <?= $iframe ?>
         </div>
       <?php endif; ?>

@@ -5,8 +5,8 @@
   $button_text   = get_theme_mod('ldev_boats_cta_section_button_text');
   $button_link   = get_theme_mod('ldev_boats_cta_section_button_link');
   $button_2_text = get_theme_mod('ldev_boats_cta_section_button_2_text');
-  $button_2_link = get_theme_mod('ldev_boats_cta_section_button_2_link');
-  
+  $button_2_link = get_theme_mod('ldev_boats_cta_section_button_2_link') ? get_permalink(get_theme_mod('ldev_boats_cta_section_button_2_link')) : '';
+
   if($background || $title || $text || ($button_text && $button_link) || ($button_2_text && $button_2_link)) :
 ?>
 <div class="cta-section" style="background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%), url(<?= esc_url($background); ?>) no-repeat center / cover;">
