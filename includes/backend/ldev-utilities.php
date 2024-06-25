@@ -229,10 +229,10 @@ function ldev_youtube($url = '', $imagem = '', $botao = '', $alt = null)
 ?>
     <div class="aspect-16-9 ps-rel youtube-iframe ovf-h flex jcc aic" id="yt-<?= $videoId ?>">
       <div class="youtube-autoplay w-100 h-100">
-        <div class="items">
+        <div class="items t-secondary">
           <img class='img-btn aspect-16-9 border-radius-sm' src='<?= ($imagem ? $imagem : 'https://i3.ytimg.com/vi/' . $videoId . '/maxresdefault.jpg') ?>' alt='<?= $alt ?>'>
           <?php if ($botao): ?><p><?= $botao ?></p><?php endif; ?>
-            <svg viewbox="0 0 130 130" width="90" height="90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M130 65c0-35.898-29.101-65-65-65C29.102 0 0 29.102 0 65c0 35.899 29.102 65 65 65 35.899 0 65-29.101 65-65Z" fill="#3A3AFF"/><path d="M88.227 61.356c2.364 1.397 2.364 4.89 0 6.288L56.318 86.508C53.954 87.906 51 86.158 51 83.364V45.636c0-2.795 2.955-4.542 5.318-3.144l31.91 18.864Z" fill="#fff"/></svg>
+            <svg viewbox="0 0 130 130" width="90" height="90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M130 65c0-35.898-29.101-65-65-65C29.102 0 0 29.102 0 65c0 35.899 29.102 65 65 65 35.899 0 65-29.101 65-65Z" fill="currentColor"/><path d="M88.227 61.356c2.364 1.397 2.364 4.89 0 6.288L56.318 86.508C53.954 87.906 51 86.158 51 83.364V45.636c0-2.795 2.955-4.542 5.318-3.144l31.91 18.864Z" fill="#fff"/></svg>
         </div>
       </div>
       <script>

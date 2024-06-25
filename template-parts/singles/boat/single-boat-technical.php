@@ -76,7 +76,7 @@
       <?php endif; if(!empty($button) || !empty($button_2)) :?>
         <div class="buttons flex jcc gap-1 col-lg-12 mt-5">
           <?php if ($button) : ldev_btn($button, 'btn-primary'); endif; ?>
-          <?php if ($button) : ldev_btn($button, 'btn-outline primary'); endif; ?>
+          <?php if ($button_2) : ldev_btn($button_2, 'btn-outline primary'); endif; ?>
         </div>
       <?php endif; ?>
     </div>

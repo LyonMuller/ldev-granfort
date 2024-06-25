@@ -31,6 +31,7 @@
                   loop
                   disablepictureinpicture
                   disableremoteplayback
+                  playsinline
                   data-poster="<?= $background['url'] ?>"
                   data-src="<?= $video['url'] ?>"
                   preload="none"

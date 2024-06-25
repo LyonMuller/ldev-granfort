@@ -43,7 +43,7 @@
           <?php endif;?>
         </div>
       <?php endif; if($iframe) : ?>
-        <div class="col map px-0">
+        <div class="<?= $title || !empty($items) ? 'col-md-9 pr-0' : 'col-md-12 px-0' ?> map ">
           <?= $iframe ?>
         </div>
       <?php endif; ?>
