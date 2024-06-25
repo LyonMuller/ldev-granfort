@@ -6,10 +6,27 @@
   $button     = get_sub_field('button');
   $button_2   = get_sub_field('button_2');
   $background = get_sub_field('background');
-  if($title || $headline || $text || $button || $button_2 || $background ) :
+  $video      = get_sub_field('video');
+  if($title || $headline || $text || $button || $button_2 || $background || $video) :
 ?>
   <section class="secao-banner__home secao-banner__boat ovf-h ps-rel">
     <div class="banner__home ps-rel" style="background: url(<?= $background['url']; ?>) no-repeat center / cover;">
+      <?php if($video):?>
+        <video
+          autoplay
+          muted
+          loop
+          disablepictureinpicture
+          disableremoteplayback
+          playsinline
+          data-poster="<?= $background['url'] ?>"
+          data-src="<?= isset($video['url']) ? $video['url'] : '' ?>"
+          class="z1 ps-abs inset-0 h-100 w-100 object-cover lozad"
+          preload="none"
+        >
+          <source src="<?= $video_url ?>" type="video/mp4">
+        </video>
+      <?php endif; ?>
       <div class="overlay"></div>
       <div class="container">
         <div class="row jcc txt-ct ps-rel content aie">

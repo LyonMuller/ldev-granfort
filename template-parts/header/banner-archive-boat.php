@@ -18,6 +18,7 @@
       muted
       loop
       disablepictureinpicture
+      playsinline
       disableremoteplayback
       data-poster="<?= $background ?>"
       data-src="<?= $video_url ?>"

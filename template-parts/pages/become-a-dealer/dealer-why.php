@@ -22,7 +22,7 @@
         </div>
       <?php endif; if(!empty($items)) : ?>
         <div class="col-md-12 items-cont mt-5 pt-3">
-          <div class="row row-cols-sm-2 jcs row-cols-md-auto ais txt-ct">
+          <div class="row row-cols-2 jcs row-cols-md-auto ais txt-ct gap-y-2">
             <?php foreach($items as $item) : 
               $icon = isset($item['icon']) ? $item['icon'] : '';
               $title = isset($item['title']) ? $item['title'] : '';

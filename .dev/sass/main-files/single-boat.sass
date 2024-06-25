@@ -8,5 +8,11 @@
 
 @import "../theme/pages/front-page/front-dealers"
 
-@media (width < 991px)
-  // @import "../theme/responsive/pages/front-page/front-descricao"
+@include media-breakpoint-down(md)
+  @import "../theme/responsive/singles/boat/single-boat-menu"
+  @import "../theme/responsive/singles/boat/single-boat-technical"
+
+  @import "../theme/responsive/pages/owners-resources/owners-description"
+
+  @import "../theme/responsive/pages/front-page/front-dealers"
+  @import "../theme/critical-responsive/pages/contact/contact-form"

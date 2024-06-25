@@ -12,8 +12,8 @@
   <div class="container">
     <div class="row jcc row-cols-sm-1 row-cols-md-2 gap-y-2 ais wow animate__fadeIn">
       <?php if ($title) : ?>
-        <div class="col-md-12">
-          <h2 class="title mb-3 t-up txt-ct fwn flex gap-1 jcc">
+        <div class="col-md-12 title-cont">
+          <h2 class="title mb-3 t-up txt-ct fwn flex flex-wrap gap-1 jcc">
             <?= $title ?>
             <span class="divisor t-secondary">/</span> <span class="divisor t-gray">/</span>
             <span class="boat-name"><?= get_the_title() ?></span>

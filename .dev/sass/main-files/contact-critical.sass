@@ -1,4 +1,8 @@
 @import '../theme/core/core'
 @import "../theme/components/forms"
 
-@import "../theme/critical/pages/contact/*"
+@import "../theme/critical/pages/contact/contact-form"
+@import "../theme/critical/pages/contact/contact-customer-service"
+
+@include media-breakpoint-down(md)
+  @import "../theme/critical-responsive/pages/contact/contact-form"

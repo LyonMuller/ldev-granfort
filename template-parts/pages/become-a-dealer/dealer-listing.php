@@ -2,10 +2,8 @@
 <?php if(have_rows('listing_section')) : while(have_rows('listing_section')) : the_row();
   $title      = get_sub_field('title');
   $text       = get_sub_field('text');
-  $categories = get_terms([
-    'taxonomy' => 'boat_category',
-    'hide_empty' => true,
-  ]);
+
+  $categories = ldev_get_sorted_boat_categories();
 
   $args = [
     'post_type' => 'boat',
@@ -28,10 +26,9 @@
             <div class="t-gray"><?= $text ?></div>
           <?php endif; ?>
         </div>
-      <?php endif; ?>
-      <?php if ($categories) : ?>
+      <?php endif; if ($categories) : ?>
         <div class="row">
-          <div class="filters flex jcc txt-ct mb-5 gap-1 aic w-100">
+          <div class="filters flex flex-wrap jcc txt-ct mb-5 gap-1 aic w-100">
           <button class="btn-unstyled active t-gray t-up" data-filter="all">All</button>
             <?php foreach ($categories as $category) : ?>
               <button class="btn-unstyled t-gray t-up" data-filter="<?= esc_attr($category->slug); ?>"><?= esc_html($category->name); ?></button>

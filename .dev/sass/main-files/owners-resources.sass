@@ -3,4 +3,6 @@
 @import "../theme/pages/owners-resources/owners-resources"
 @import "../theme/pages/owners-resources/owners-cta"
 
-@media (width <= 991px)
+@include media-breakpoint-down(md)
+  @import "../theme/responsive/pages/owners-resources/owners-description"
+  @import "../theme/responsive/pages/owners-resources/owners-cta"

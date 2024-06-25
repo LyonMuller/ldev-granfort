@@ -1,0 +1,76 @@
+.specifications-section
+  
+  .title
+    justify-content: center
+
+  .title
+    margin-bottom: $spacer * 3
+
+  .divisor.t-secondary,
+  .boat-name
+    margin-left: 0
+
+  .boat-name
+    width: 100%
+
+  .spec-item
+    width: 100%
+    flex: 1 0 100%
+    &:not(:last-child)::after
+      width: 100%
+      height: 1px
+      bottom: -$spacer * .5
+      top: auto
+      translate: 0
+
+  .title-cont + .spec-cont
+    flex: 0 0 80%
+    margin-inline: auto 0
+    .spec
+      padding: $spacer
+      gap: $spacer
+
+
+  .title-cont + .spec-cont,
+  .spec-cont + .spec-cont
+    order: 2
+
+  .spec-cont + .spec-cont
+    padding: 0
+    flex: 1 0 100%
+    .spec
+      padding: $spacer * 9 $spacer $spacer * 3
+      gap: $spacer
+
+  .image
+    order: 1
+    position: absolute
+    left: 0
+    translate: -50% 50%
+    z-index: 1
+
+    img
+      height: min(70vh, 450px)
+      width: auto
+
+  .other-infos-cont,
+  .buttons
+    order: 4
+  
+  .other-infos-cont
+    padding-inline: $spacer
+
+    .title
+      margin-bottom: $spacer
+      justify-content: space-between
+
+    .other-info
+      display: grid
+      grid-template-columns: 3fr 1fr
+      gap: $spacer
+
+      h4
+        text-align: right
+
+  .buttons
+    margin-top: $spacer * 3

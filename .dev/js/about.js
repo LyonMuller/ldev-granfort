@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
       breakpoints: {
         768: {
           perPage: 1,
+          pagination: true
         }
       }
     });

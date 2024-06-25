@@ -12,7 +12,7 @@
         <div class="col-md-12 txt-ct wow animate__fadeIn">
           <h2 class="title mb-0 fwn"><?= $title ?></h2>
         </div>
-        <div class="col-lg-12 flex gap-1 jcc wow animate__fadeInUp">
+        <div class="col-lg-12 flex flex-wrap gap-1 jcc wow animate__fadeInUp">
           <div class="col-md-3">
             <label class="sr-only" for="boat-select">Select Boat:</label>
             <select id="boat-select">
