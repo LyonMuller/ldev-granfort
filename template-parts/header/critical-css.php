@@ -40,9 +40,6 @@ $css_files = [
     if (is_post_type_archive('boat') || is_tax('boat_category')): 
       load_css($css_files['archive_boat'], $arrContextOptions);
     endif;
-    if (is_home() || is_archive() || is_search() || is_paged()): 
-      load_css($css_files['blog'], $arrContextOptions);
-    endif;
     if (is_singular('produto')): 
       load_css($css_files['single_produto'], $arrContextOptions);
     endif;

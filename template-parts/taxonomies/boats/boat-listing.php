@@ -34,7 +34,7 @@
   <section class="container py-6 boat-listing">
     <?php if ($categories && is_array($categories)) : ?>
       <div class="row">
-        <div class="filters flex jcc txt-ct mb-5 gap-1 aic w-100">
+        <div class="filters flex flex-wrap jcc txt-ct mb-5 gap-1 aic w-100">
           <button class="btn-unstyled active t-gray t-up" data-filter="all">All</button>
           <?php foreach ($categories as $category) : ?>
             <button class="btn-unstyled t-gray t-up" data-filter="<?= esc_attr($category->slug); ?>"><?= esc_html($category->name); ?></button>

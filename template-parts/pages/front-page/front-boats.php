@@ -49,7 +49,7 @@
         </div>
       <?php endif; ?>
       <div class="col-lg-12">
-        <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="boats-container">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4" id="boats-container">
           <?php foreach ($boats_data as $boat) : get_template_part('template-parts/components/cards/boat', 'standard', ['boat' => $boat]); endforeach; ?>
         </div>
       </div>
