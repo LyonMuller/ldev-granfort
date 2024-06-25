@@ -32,6 +32,7 @@ jobs:
           else
             git checkout -b prod
             git merge --no-ff main -m "Merge branch 'main' into 'prod'"
+          fi
 
       - name: Remove unwanted files and directories
         run: |
