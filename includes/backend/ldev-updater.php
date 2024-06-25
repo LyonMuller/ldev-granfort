@@ -1,4 +1,6 @@
 <?php
+define('ALLOWED_USER_EMAIL', 'sites@lyon.dev');
+
 // Adicionar a página de opções ao menu "Settings" do admin
 function ldev_add_admin_menu() {
   add_options_page(
@@ -38,8 +40,9 @@ add_action('admin_init', 'ldev_settings_init');
 
 function ldev_github_token_render() {
   $options = get_option('ldev_github_token');
+  $masked_token = !empty($options) ? substr($options, 0, 4) . str_repeat('*', strlen($options) - 4) : '';
   ?>
-  <input type='text' name='ldev_github_token' value='<?php echo esc_attr($options); ?>'>
+  <input type='password' name='ldev_github_token' value='<?php echo esc_attr($options); ?>' placeholder='<?php echo esc_attr($masked_token); ?>'>
   <?php
 }
 
@@ -48,6 +51,14 @@ function ldev_settings_section_callback() {
 }
 
 function ldev_options_page() {
+  $current_user = wp_get_current_user();
+
+  // Verificar se o usuário atual tem permissão para visualizar a página
+  if ($current_user->user_email != ALLOWED_USER_EMAIL) {
+    echo '<div class="notice notice-error"><p>' . __('You do not have permission to access this page.', THEME_TEXTDOMAIN) . '</p></div>';
+    return;
+  }
+
   ?>
   <form action='options.php' method='post'>
     <h2><?php echo __('Theme Updates', THEME_TEXTDOMAIN); ?></h2>
@@ -55,19 +66,32 @@ function ldev_options_page() {
     settings_fields('ldevTheme');
     do_settings_sections('ldevTheme');
     submit_button();
+
+    // Adiciona botão para busca manual de atualizações
     ?>
+    <form method="post" action="">
+      <input type="hidden" name="ldev_manual_update" value="1">
+      <?php submit_button(__('Check for Updates', THEME_TEXTDOMAIN)); ?>
+    </form>
+    <?php
+  ?>
   </form>
   <?php
+
+  // Verifica se o botão manual foi clicado
+  if (isset($_POST['ldev_manual_update'])) {
+    ldev_check_for_updates(true);
+  }
 }
 
 // Verificar e atualizar o tema a partir da branch prod
-function ldev_check_for_updates() {
+function ldev_check_for_updates($manual = false) {
   if (!current_user_can('manage_options')) {
     return;
   }
 
   $token = get_option('ldev_github_token');
-  $repo = 'username/repo'; // Substitua pelo seu usuário e repositório do GitHub
+  $repo = THEME_REPO; // Usando a constante para o repositório
 
   if (!$token) {
     return;
@@ -83,6 +107,11 @@ function ldev_check_for_updates() {
 
   $response = wp_remote_get($url, $args);
   if (is_wp_error($response)) {
+    if ($manual) {
+      add_action('admin_notices', function() {
+        echo '<div class="notice notice-error"><p>' . __('Failed to check for updates.', THEME_TEXTDOMAIN) . '</p></div>';
+      });
+    }
     return;
   }
 
@@ -91,12 +120,29 @@ function ldev_check_for_updates() {
 
   if (isset($data->commit->sha)) {
     $latest_commit = $data->commit->sha;
-    $theme = wp_get_theme();
-    $current_version = $theme->get('Version');
+    $current_commit = get_option('ldev_latest_commit');
 
-    if ($latest_commit !== get_option('ldev_latest_commit')) {
-      ldev_update($latest_commit, $token);
-      update_option('ldev_latest_commit', $latest_commit);
+    if ($latest_commit !== $current_commit) {
+      if (ldev_update($latest_commit, $token)) {
+        update_option('ldev_latest_commit', $latest_commit);
+        if ($manual) {
+          add_action('admin_notices', function() {
+            echo '<div class="notice notice-success"><p>' . __('Theme updated successfully.', THEME_TEXTDOMAIN) . '</p></div>';
+          });
+        }
+      } else {
+        if ($manual) {
+          add_action('admin_notices', function() {
+            echo '<div class="notice notice-error"><p>' . __('Failed to update the theme.', THEME_TEXTDOMAIN) . '</p></div>';
+          });
+        }
+      }
+    } else {
+      if ($manual) {
+        add_action('admin_notices', function() {
+          echo '<div class="notice notice-info"><p>' . __('No updates available.', THEME_TEXTDOMAIN) . '</p></div>';
+        });
+      }
     }
   }
 }
@@ -104,7 +150,7 @@ add_action('init', 'ldev_check_for_updates');
 
 // Baixar e atualizar o tema
 function ldev_update($commit_sha, $token) {
-  $repo = 'username/repo'; // Substitua pelo seu usuário e repositório do GitHub
+  $repo = THEME_REPO; // Usando a constante para o repositório
   $url = "https://api.github.com/repos/$repo/zipball/prod";
   $args = array(
     'headers' => array(
