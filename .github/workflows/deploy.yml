@@ -45,13 +45,13 @@ jobs:
           rm -f package.json
           rm -f .gitattributes
 
-      - name: Commit changes
+      - name: Commit and push changes to prod branch
         run: |
           git add .
           git commit -m "Remove unwanted files and directories"
           git push origin prod --force
 
-      - name: Create Release
+      - name: Create Release from prod branch
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -60,3 +60,4 @@ jobs:
           release_name: "Release v1.0.${{ github.run_number }}"
           draft: false
           prerelease: false
+          target_commitish: "prod"
