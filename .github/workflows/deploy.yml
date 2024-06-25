@@ -1,4 +1,4 @@
-name: Update Prod Branch
+name: Update Prod Branch and Create Release
 
 on:
   push:
@@ -32,7 +32,6 @@ jobs:
           else
             git checkout -b prod
             git merge --no-ff main -m "Merge branch 'main' into 'prod'"
-          fi
 
       - name: Remove unwanted files and directories
         run: |
@@ -49,15 +48,9 @@ jobs:
         run: |
           git add .
           git commit -m "Remove unwanted files and directories"
-
-      - name: Push to prod branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: |
           git push origin prod --force
 
       - name: Create Release
-        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -66,4 +59,3 @@ jobs:
           release_name: "Release v1.0.${{ github.run_number }}"
           draft: false
           prerelease: false
-          target_commitish: prod
