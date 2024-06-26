@@ -24,7 +24,7 @@
         if(!empty($options)):
       ?>
         <div class="col spec-cont ps-rel">
-          <div class="spec py-3 px-3 bg-white flex aic flex-wrap jcb">
+          <div class="spec py-3 gap-y-1 px-3 bg-white flex aic flex-wrap jcb">
             <?php foreach ($options as $option) :
               $value = isset($option['value']) ? $option['value']: '';
               $text  = isset($option['text']) ? $option['text']  : '';

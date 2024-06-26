@@ -3,12 +3,15 @@
   position: fixed
   bottom: $spacer
   left: $spacer
-  max-width: 41ch
+  width: min(35ch,90%)
   background-color: rgba($white, .85)
   backdrop-filter: blur(4px)
   z-index: $zindex-fixed + 5
   padding: var(--padding)
   font-size: $font-size-sm
+  @include media-breakpoint-down(md)
+    left: 50%
+    translate: -50% 0
 
   &:after
     content: ''
